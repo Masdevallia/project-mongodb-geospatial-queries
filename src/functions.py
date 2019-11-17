@@ -37,3 +37,13 @@ def exchangerate_api_request(currency):
     url = "https://api.exchangerate-api.com/v4/latest/{}".format(currency)
     res = requests.get(url)
     return res
+
+
+def getCompaniesNear(longitude, latitude, max_distance_m=2000):
+    db, coll = connectCollection('companies','companies_cleaned')
+    return list(coll.find(
+    {"office_1_location":{"$near":{"$geometry":{"type":"Point","coordinates":[longitude,latitude]},
+                                   "$maxDistance":max_distance_m}}}))
+
+
+

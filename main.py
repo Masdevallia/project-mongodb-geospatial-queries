@@ -5,7 +5,18 @@ from pymongo import MongoClient
 import pandas as pd
 import numpy as np
 import folium
+import random
 from src.functions import connectCollection
+from src.functions import getCompaniesNear
+
+########################################################################################################
+
+df = pd.read_csv('./input/companies_df.csv')
+
+cols = ['_id', 'name', 'founded_year', 'category_code','deadpooled_year', 'total_money_raised_USD', 'num_offices',
+ 'office_1_longitude','office_1_latitude', 'office_1_location', 'office_1_city','office_1_state_code',
+ 'office_1_country_code']
+df = df[cols]
 
 ########################################################################################################
 
@@ -15,7 +26,7 @@ db, coll = connectCollection('companies','companies_cleaned')
 
 companies = list(coll.find())
 
-active_companies = list(coll.find({'deadpooled_year': np.nan}))
+# active_companies = list(coll.find({'deadpooled_year': np.nan}))
 
 ########################################################################################################
 
@@ -23,49 +34,97 @@ active_companies = list(coll.find({'deadpooled_year': np.nan}))
 
 # {$and:[{deadpooled_year: NaN},{founded_year:{$lte:2009}}]}
 
-old_companies = list(coll.find({'$and':[{'deadpooled_year': np.nan},{'founded_year':{'$lte':2009}}]}))
+# 13 years!
+years= 13
+old_companies = list(coll.find({'$and':[{'deadpooled_year': np.nan},{'founded_year':{'$lte':2019-years}}]}))
+
+possible_offices_criterion_1 = []
+for e in successful_tech_startups:
+    near_companies = getCompaniesNear(e['office_1_location']['coordinates'][0],
+                                      e['office_1_location']['coordinates'][1],2000)
+    # [near_companies[i] for i in range(len(near_companies)) if near_companies[i]['name'] == e['name']]
+    # [near_companies[i] for i in range(len(near_companies)) if near_companies[i]['name'] != e['name']]
+    for f in near_companies:
+        if f['_id'] != e['name']:
+            possible_offices_criterion_1.append(f['_id'])
+
+possible_offices_c1 = list(set(possible_offices_criterion_1))
 
 ########################################################################################################
 
 # Developers like to be near successful tech startups that have raised at least 1 Million dollars.
 
-# {$and:[{$or:[{category_code:'hardware'},{category_code:'nanotech'},{category_code:'mobile'},{category_code:'games_video'},{category_code:'cleantech'},{category_code:'software'},{category_code:'analytics'},{category_code:'web'},{category_code:'biotech'}]},{deadpooled_year: NaN},{founded_year:{$gte:2010}},{total_money_raised_USD:{$gte:1000000}}]}
+# {$and:[{$or:[{category_code:'hardware'},{category_code:'nanotech'},{category_code:'mobile'},
+# {category_code:'games_video'},{category_code:'cleantech'},{category_code:'software'},
+# {category_code:'analytics'},{category_code:'web'},{category_code:'biotech'}]},{deadpooled_year: NaN},
+# {founded_year:{$gte:2010}},{total_money_raised_USD:{$gte:1000000}}]}
 
-successful_tech_startups_2010 = list(coll.find(
-    {'$and':[{'$or':[{'category_code':'hardware'},{'category_code':'nanotech'},{'category_code':'mobile'},
-                     {'category_code':'games_video'},{'category_code':'cleantech'},{'category_code':'software'},
-                     {'category_code':'analytics'},{'category_code':'web'},{'category_code':'biotech'}]},
-             {'deadpooled_year': np.nan},{'founded_year':{'$gte':2010}},{'total_money_raised_USD':{'$gte':1000000}}]}))
+successful_tech_startups = list(coll.find({'$and':[{'$or':[
+        {'category_code':'semiconductor'},{'category_code':'network_hosting'},{'category_code':'ecommerce'},
+        {'category_code':'photo_video'},{'category_code':'consulting'},{'category_code':'design'},
+        {'category_code':'automotive'},{'category_code':'hardware'},{'category_code':'nanotech'},
+        {'category_code':'mobile'},{'category_code':'security'},{'category_code':'games_video'},
+        {'category_code':'cleantech'},{'category_code':'software'},{'category_code':'analytics'},
+        {'category_code':'web'},{'category_code':'biotech'}]},
+    {'deadpooled_year': np.nan},{'founded_year':{'$gte':1976}},{'total_money_raised_USD':{'$gte':1000000}}]}))
 
-successful_tech_startups_2000 = list(coll.find(
-    {'$and':[{'$or':[{'category_code':'hardware'},{'category_code':'nanotech'},{'category_code':'mobile'},
-                     {'category_code':'games_video'},{'category_code':'cleantech'},{'category_code':'software'},
-                     {'category_code':'analytics'},{'category_code':'web'},{'category_code':'biotech'}]},
-             {'deadpooled_year': np.nan},{'founded_year':{'$gte':2000}},{'total_money_raised_USD':{'$gte':1000000}}]}))
+not_possible_offices_criterion_2 = []
+for e in old_companies:
+    near_companies = getCompaniesNear(e['office_1_location']['coordinates'][0],
+                                      e['office_1_location']['coordinates'][1],2000)
+    for f in near_companies:
+        if f['_id'] != e['name']:
+            not_possible_offices_criterion_2.append(f['_id'])
+
+not_possible_offices_c2 = list(set(not_possible_offices_criterion_2))
 
 ########################################################################################################
 
-# Designers like to go to design talks and share knowledge. There must be some nearby companies that also do design.
+# Designers like to go to design talks and share knowledge. There must be some nearby companies 
+# that also do design.
 
-design_companies = list(coll.find({'category_code':'design'}))
+# design_companies = list(coll.find({'category_code':'design'}))
 
 ########################################################################################################
 
-# Folium
+possible_offices_c1_c2 = []
+for e in possible_offices_c1:
+    if e not in not_possible_offices_c2:
+        possible_offices_c1_c2.append(e)        
+possible_offices_c1_c2_to_string = [str(e) for e in possible_offices_c1_c2]
 
-manhattan_companies = coll.find(
-    {"office_1_location":{"$near":{"$geometry":{"type":"Point","coordinates":[-73.9712,40.7831]},
-                                   "$maxDistance":3000}}})
-# "$maxDistance":10000,"$minDistance":5000
+########################################################################################################
 
-manhattan_companies = list(manhattan_companies)
+indexs = []
+for i in range(len(df)):
+    if df['_id'][i] in possible_offices_c1_c2_to_string:
+        indexs.append(i)
+print(len(indexs))
+print(indexs)
 
-map_city = folium.Map(location=[40.7221,-73.9712], zoom_start=12)
-for company in manhattan_companies:
-    folium.Marker(company['office_1_location']['coordinates'][::-1],
-                    radius=2,
-                    icon=folium.Icon(icon='cloud',color='red'), 
-                   ).add_to(map_city)
+df_filtered = df.iloc[indexs]
 
+########################################################################################################
+
+possible_offices_c1_c2_coords = []
+for e in companies:
+    for f in possible_offices_c1_c2:
+        if e['_id'] == f:
+            possible_offices_c1_c2_coords.append(e['office_1_location'])
+
+########################################################################################################
+
+# map_city
+
+tooltip = 'Click me!'
+e = possible_offices_c1_c2_coords[random.choice(range(0,len(possible_offices_c1_c2_coords)))]
+map_city = folium.Map(location = e['coordinates'][::-1], zoom_start=13)
+folium.Circle(radius=2000,location=e['coordinates'][::-1],popup='Old companies free zone',color='#3186cc',
+    fill=True,fill_color='#3186cc').add_to(map_city)
+folium.Marker(e['coordinates'][::-1],radius=2,icon=folium.Icon(
+    icon='briefcase',color='red'),popup='<b>Perfect location for your business</b>',
+    tooltip=tooltip).add_to(map_city)
 map_city
+
+# map_city.save('./output/index.html')
 

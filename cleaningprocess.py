@@ -156,8 +156,9 @@ companies_df_final.to_csv('./input/companies_df.csv', index=False)
 
 ########################################################################################################
 
-# Importing cleaned data to MongoDB:
+# Importing cleaned data to MongoDB and creating 2dSphere index:
 
 coll2 = db['companies_cleaned']
 coll2.insert_many(companies_df_final.to_dict('records'))
 
+coll2.create_index([('office_1_location', pymongo.GEOSPHERE)])
