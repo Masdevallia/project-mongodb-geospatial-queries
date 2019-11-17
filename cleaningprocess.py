@@ -1,13 +1,9 @@
 
 # Importing packages:
 
-from pymongo import MongoClient
-import pandas as pd
-import numpy as np
-from src.functions import connectCollection
-from src.functions import set_key
-from src.functions import getLocation
-from src.functions import exchangerate_api_request
+from src.mongodb import *
+from src.clean import *
+from src.api import exchangerate_api_request
 
 ########################################################################################################
 

@@ -1,13 +1,10 @@
 
 # Importing packages:
-
-from pymongo import MongoClient
-import pandas as pd
-import numpy as np
+from src.mongodb import *
+from src.clean import *
+from src.api import foursquare_request_venues_authorized
 import folium
 import random
-from src.functions import connectCollection
-from src.functions import getCompaniesNear
 
 ########################################################################################################
 
@@ -111,6 +108,10 @@ for e in companies:
     for f in possible_offices_c1_c2:
         if e['_id'] == f:
             possible_offices_c1_c2_coords.append(e['office_1_location'])
+
+########################################################################################################
+
+data = foursquare_request_venues_authorized('explore', selected_restaurant.values[0][4], selected_restaurant.values[0][5], 'cinema')
 
 ########################################################################################################
 
