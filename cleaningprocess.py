@@ -1,6 +1,8 @@
 
 # Importing packages:
 
+import pandas as pd
+import numpy as np
 from src.mongodb import *
 from src.clean import *
 from src.api import exchangerate_api_request
@@ -157,4 +159,4 @@ companies_df_final.to_csv('./input/companies_df.csv', index=False)
 coll2 = db['companies_cleaned']
 coll2.insert_many(companies_df_final.to_dict('records'))
 
-coll2.create_index([('office_1_location', pymongo.GEOSPHERE)])
+# coll2.create_index([('office_1_location', pymongo.GEOSPHERE)])
