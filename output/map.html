@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_19c1caa9e2204c0fba65615eb5b3a178 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_19c1caa9e2204c0fba65615eb5b3a178" ></div>
+        
+</body>
+<script>    
+    
+            var map_19c1caa9e2204c0fba65615eb5b3a178 = L.map(
+                "map_19c1caa9e2204c0fba65615eb5b3a178",
+                {
+                    center: [30.318112, -81.674745],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 14,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_61b16231926242e1a985c926978afb95 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_19c1caa9e2204c0fba65615eb5b3a178);
+        
+    
+            var circle_c90e14466db2419ab1feb332ca7495b4 = L.circle(
+                [30.318112, -81.674745],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 2000, "stroke": true, "weight": 3}
+            ).addTo(map_19c1caa9e2204c0fba65615eb5b3a178);
+        
+    
+        var popup_b786fbaca7bf4a50bb52f01568148f64 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_26e42143326c4eb38bbfda8ed568b54d = $(`<div id="html_26e42143326c4eb38bbfda8ed568b54d" style="width: 100.0%; height: 100.0%;">Old companies free zone</div>`)[0];
+            popup_b786fbaca7bf4a50bb52f01568148f64.setContent(html_26e42143326c4eb38bbfda8ed568b54d);
+        
+
+        circle_c90e14466db2419ab1feb332ca7495b4.bindPopup(popup_b786fbaca7bf4a50bb52f01568148f64)
+        ;
+
+        
+    
+    
+            var marker_a4a00ad6322e490aa83d2ad11b9e23e2 = L.marker(
+                [30.311428066478747, -81.68078688211251],
+                {"radius": 2}
+            ).addTo(map_19c1caa9e2204c0fba65615eb5b3a178);
+        
+    
+            var icon_d094f0f89e684dabaec871a721dc9c57 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "coffee", "iconColor": "white", "markerColor": "orange", "prefix": "fa"}
+            );
+            marker_a4a00ad6322e490aa83d2ad11b9e23e2.setIcon(icon_d094f0f89e684dabaec871a721dc9c57);
+        
+    
+        var popup_370636539d0b4844b6798146908c6297 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_fb2eb8ee1489472b9ac15b84d3118049 = $(`<div id="html_fb2eb8ee1489472b9ac15b84d3118049" style="width: 100.0%; height: 100.0%;">Starbucks</div>`)[0];
+            popup_370636539d0b4844b6798146908c6297.setContent(html_fb2eb8ee1489472b9ac15b84d3118049);
+        
+
+        marker_a4a00ad6322e490aa83d2ad11b9e23e2.bindPopup(popup_370636539d0b4844b6798146908c6297)
+        ;
+
+        
+    
+    
+            marker_a4a00ad6322e490aa83d2ad11b9e23e2.bindTooltip(
+                `<div>
+                     Click me!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_97e2424c45f944debbba314db516c689 = L.marker(
+                [30.316404, -81.675827],
+                {"radius": 2}
+            ).addTo(map_19c1caa9e2204c0fba65615eb5b3a178);
+        
+    
+            var icon_da31e4a3605a4026930e1b457dfff9fb = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "cutlery", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_97e2424c45f944debbba314db516c689.setIcon(icon_da31e4a3605a4026930e1b457dfff9fb);
+        
+    
+        var popup_860d8aefc3134e0ab0a206a5e4969cfb = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a3b3242a304345baaee4ef66e1ca0ffb = $(`<div id="html_a3b3242a304345baaee4ef66e1ca0ffb" style="width: 100.0%; height: 100.0%;">Vegan restaurant: 'Community Loaves'</div>`)[0];
+            popup_860d8aefc3134e0ab0a206a5e4969cfb.setContent(html_a3b3242a304345baaee4ef66e1ca0ffb);
+        
+
+        marker_97e2424c45f944debbba314db516c689.bindPopup(popup_860d8aefc3134e0ab0a206a5e4969cfb)
+        ;
+
+        
+    
+    
+            marker_97e2424c45f944debbba314db516c689.bindTooltip(
+                `<div>
+                     Click me!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1f5297f1878f447dba0b35511a9b5e40 = L.marker(
+                [30.321204519522944, -81.67575896620902],
+                {"radius": 2}
+            ).addTo(map_19c1caa9e2204c0fba65615eb5b3a178);
+        
+    
+            var icon_b1bd0d6c29374ec5b88b098424e2b18c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "glass", "iconColor": "white", "markerColor": "purple", "prefix": "glyphicon"}
+            );
+            marker_1f5297f1878f447dba0b35511a9b5e40.setIcon(icon_b1bd0d6c29374ec5b88b098424e2b18c);
+        
+    
+        var popup_098cd2a9108e4d8fbcc4199d4ef9cace = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b73d9e03cd5e4b96bab686352bc1fc65 = $(`<div id="html_b73d9e03cd5e4b96bab686352bc1fc65" style="width: 100.0%; height: 100.0%;">Night club: 'Incahoots Night Club'</div>`)[0];
+            popup_098cd2a9108e4d8fbcc4199d4ef9cace.setContent(html_b73d9e03cd5e4b96bab686352bc1fc65);
+        
+
+        marker_1f5297f1878f447dba0b35511a9b5e40.bindPopup(popup_098cd2a9108e4d8fbcc4199d4ef9cace)
+        ;
+
+        
+    
+    
+            marker_1f5297f1878f447dba0b35511a9b5e40.bindTooltip(
+                `<div>
+                     Click me!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_cdde04d4e12c41f5ace15d54a7608d2c = L.marker(
+                [30.32298323153012, -81.66831943206489],
+                {"radius": 2}
+            ).addTo(map_19c1caa9e2204c0fba65615eb5b3a178);
+        
+    
+            var icon_f294e5ede26f487994e1855c07eb77c7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plane", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_cdde04d4e12c41f5ace15d54a7608d2c.setIcon(icon_f294e5ede26f487994e1855c07eb77c7);
+        
+    
+        var popup_74b683db9f4a49e09e0ba789645843ca = L.popup({"maxWidth": "100%"});
+
+        
+            var html_73be36f60ef0443db2b8d04b24cc5a82 = $(`<div id="html_73be36f60ef0443db2b8d04b24cc5a82" style="width: 100.0%; height: 100.0%;">Airport: 'Florida Times-Union's Helipad'</div>`)[0];
+            popup_74b683db9f4a49e09e0ba789645843ca.setContent(html_73be36f60ef0443db2b8d04b24cc5a82);
+        
+
+        marker_cdde04d4e12c41f5ace15d54a7608d2c.bindPopup(popup_74b683db9f4a49e09e0ba789645843ca)
+        ;
+
+        
+    
+    
+            marker_cdde04d4e12c41f5ace15d54a7608d2c.bindTooltip(
+                `<div>
+                     Click me!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1b5eca41d0664e71a59863136b0d6386 = L.marker(
+                [30.314434354227956, -81.6811074784566],
+                {"radius": 2}
+            ).addTo(map_19c1caa9e2204c0fba65615eb5b3a178);
+        
+    
+            var icon_b0eee4f0841f4769ba4fd2c5bc89a09c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "graduation-cap", "iconColor": "white", "markerColor": "gray", "prefix": "fa"}
+            );
+            marker_1b5eca41d0664e71a59863136b0d6386.setIcon(icon_b0eee4f0841f4769ba4fd2c5bc89a09c);
+        
+    
+        var popup_00f8d078ddd64d11929b63a9dcd2df81 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_1f14e4a881a04dc288e66f73574c6c0a = $(`<div id="html_1f14e4a881a04dc288e66f73574c6c0a" style="width: 100.0%; height: 100.0%;">School: 'Boredies'</div>`)[0];
+            popup_00f8d078ddd64d11929b63a9dcd2df81.setContent(html_1f14e4a881a04dc288e66f73574c6c0a);
+        
+
+        marker_1b5eca41d0664e71a59863136b0d6386.bindPopup(popup_00f8d078ddd64d11929b63a9dcd2df81)
+        ;
+
+        
+    
+    
+            marker_1b5eca41d0664e71a59863136b0d6386.bindTooltip(
+                `<div>
+                     Click me!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e09659a3e58c4fbe8c8e1d7271830426 = L.marker(
+                [30.318112, -81.674745],
+                {"radius": 2}
+            ).addTo(map_19c1caa9e2204c0fba65615eb5b3a178);
+        
+    
+            var icon_4847d49b053843f99b509f578148fb64 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "briefcase", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_e09659a3e58c4fbe8c8e1d7271830426.setIcon(icon_4847d49b053843f99b509f578148fb64);
+        
+    
+        var popup_37a6e572d2924b8aa2ba83df9d8dc912 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a00bc15b92244a1a888e3f46c269512f = $(`<div id="html_a00bc15b92244a1a888e3f46c269512f" style="width: 100.0%; height: 100.0%;"><b>Perfect location for your business</b></div>`)[0];
+            popup_37a6e572d2924b8aa2ba83df9d8dc912.setContent(html_a00bc15b92244a1a888e3f46c269512f);
+        
+
+        marker_e09659a3e58c4fbe8c8e1d7271830426.bindPopup(popup_37a6e572d2924b8aa2ba83df9d8dc912)
+        ;
+
+        
+    
+    
+            marker_e09659a3e58c4fbe8c8e1d7271830426.bindTooltip(
+                `<div>
+                     Click me!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>

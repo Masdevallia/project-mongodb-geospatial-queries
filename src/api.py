@@ -6,6 +6,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+def exchangerate_api_request(currency):
+    '''
+    Requests to exchangerate-api
+    currency must be a string of three capital letters: e.g. EUR
+    '''
+    url = "https://api.exchangerate-api.com/v4/latest/{}".format(currency)
+    res = requests.get(url)
+    return res
+    
+
 def foursquare_request_venues_authorized(request, latitude, longitude, myquery, limit=1, radius = 1000):
     '''
     Requests to foursquare-api:
@@ -59,27 +69,17 @@ def foursquare_venue_by_categories(request, latitude, longitude, categories, lim
     return json.loads(resp.text)
 
 
-def exchangerate_api_request(currency):
-    '''
-    Requests to exchangerate-api
-    currency must be a string of three capital letters: e.g. EUR
-    '''
-    url = "https://api.exchangerate-api.com/v4/latest/{}".format(currency)
-    res = requests.get(url)
-    return res
-
-
-def VenuesListbtquery(coords, offices, venue_type, radius):
+def venuesListByQuery(coords, offices, venue_type, radius):
     aux_list = []
     for i in range(len(coords)):
         data = foursquare_request_venues_authorized('search', coords[i]['coordinates'][1],
                                             coords[i]['coordinates'][0], venue_type,
-                                            radius, limit = 1)
+                                            radius)
         aux_list.append([offices[i],data])
     return aux_list
 
 
-def VenuesListbtcategory(coords, offices, categories, radius):
+def venuesListByCategory(coords, offices, categories, radius):
     '''
     Restaurante vegetariano/vegano: '4bf58dd8d48988d1d3941735'
     Local nocturno: '4bf58dd8d48988d11f941735'
@@ -90,7 +90,7 @@ def VenuesListbtcategory(coords, offices, categories, radius):
     for i in range(len(coords)):
         data = foursquare_venue_by_categories('search', coords[i]['coordinates'][1],
                                             coords[i]['coordinates'][0], categories,
-                                            radius, limit = 1)
+                                            radius)
         aux_list.append([offices[i],data])
     return aux_list
 

@@ -4,7 +4,7 @@
 import pandas as pd
 import numpy as np
 from src.mongodb import *
-from src.clean import *
+from src.CleanFilter import *
 from src.api import exchangerate_api_request
 
 ########################################################################################################
@@ -151,6 +151,7 @@ for i in range(len(companies_df_final)):
 # Exporting cleaned csv:
 
 companies_df_final.to_csv('./input/companies_df.csv', index=False)
+companies_df_final.to_json('./input/cleaned_companies.json', orient="records")
 
 ########################################################################################################
 
@@ -159,4 +160,5 @@ companies_df_final.to_csv('./input/companies_df.csv', index=False)
 coll2 = db['companies_cleaned']
 coll2.insert_many(companies_df_final.to_dict('records'))
 
+# I think it could be done with this command, but I've done it from MongoDB Compass.
 # coll2.create_index([('office_1_location', pymongo.GEOSPHERE)])
