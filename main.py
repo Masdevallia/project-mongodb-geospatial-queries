@@ -7,6 +7,10 @@ import fontawesome as fa
 from src.CleanFilter import *
 from src.api import *
 from src.mongodb import *
+from src.input import *
+from src.output import *
+
+title()
 
 # Importin data:
 df = pd.read_csv('./input/companies_df.csv', low_memory = False)
@@ -24,14 +28,16 @@ companies = list(coll.find())
 # Developers like to be near successful tech startups that have raised at least n (1 Million) dollars
 # inputmoney = 1000000
 
-inputmoney = input(
-    '''
-    Developers like to be near successful tech startups that have raised at least (n) dollars.
-    Please enter valid integers, without thousands separator.
-    Example: For 1 million dollars, enter: 1000000
-    '''
-    )
-inputmoney = int(inputmoney)
+input_money()
+
+while True:
+    inputmoney = input('n = ')
+    try:
+        inputmoney = int(inputmoney)
+        break
+    except ValueError:
+        print('Please enter a valid integer')
+        continue
 
 successful_tech_startups = list(coll.find({'$and':[{'$or':[
         {'category_code':'semiconductor'},{'category_code':'network_hosting'},{'category_code':'consulting'},
@@ -60,7 +66,18 @@ possible_offices_c1 = list(set(possible_offices_criterion_1))
 
 # Nobody in the company likes to have companies with more than n (10) years in a radius of 2 KM
 # inputyears= 10
-inputyears= 15
+
+input_year()
+
+while True:
+    inputyears = input('n = ')
+    try:
+        inputyears = int(inputyears)
+        break
+    except ValueError:
+        print('Please enter a valid integer')
+        continue
+
 old_companies = list(coll.find({'$and':[{'deadpooled_year': np.nan},{'founded_year':{'$lte':2019-inputyears}}]}))
 
 not_possible_offices_criterion_2 = []
@@ -86,6 +103,9 @@ possible_offices_c1_c2_coords = getOfficesCoords(possible_offices_c1_c2, compani
 ########################################################################################################
 
 # Executives like Starbucks A LOT. Ensure there's a starbucks not to far
+
+input_starbucks()
+
 starbucks_list = venuesListByQuery(possible_offices_c1_c2_coords, possible_offices_c1_c2, 'starbucks', 1000)
 cleaned_starbucks_list = cleanVenueList(starbucks_list)              
 possible_offices_c1_c2_c3 = [e[0] for e in cleaned_starbucks_list]
@@ -95,6 +115,9 @@ possible_offices_c1_c2_c3_coords = getOfficesCoords(possible_offices_c1_c2_c3, c
 ########################################################################################################
 
 # The CEO is Vegan
+
+input_vegan()
+
 # vegan_list = venuesListByQuery(possible_offices_c1_c2_c3_coords, possible_offices_c1_c2_c3, 'vegan', 1000)
 vegan_list = venuesListByCategory(possible_offices_c1_c2_c3_coords, possible_offices_c1_c2_c3,
              '4bf58dd8d48988d1d3941735', 1000)
@@ -106,6 +129,9 @@ possible_offices_c1_c2_c3_c4_coords = getOfficesCoords(possible_offices_c1_c2_c3
 ########################################################################################################
 
 # All people in the company have between 25 and 40 years, give them some place to go to party
+
+input_party()
+
 party_list = venuesListByCategory(possible_offices_c1_c2_c3_c4_coords, possible_offices_c1_c2_c3_c4,
  '4bf58dd8d48988d11f941735', 1000)
 cleaned_party_list = cleanVenueList(party_list)
@@ -116,6 +142,9 @@ possible_offices_c1_c2_c3_c4_c5_coords = getOfficesCoords(possible_offices_c1_c2
 ########################################################################################################
 
 # Account managers need to travel a lot (Airport < 25 km)
+
+imput_airport()
+
 airport_list = venuesListByCategory(possible_offices_c1_c2_c3_c4_c5_coords, possible_offices_c1_c2_c3_c4_c5,
  '4bf58dd8d48988d1ed931735', 25000)
 cleaned_airport_list = cleanVenueList(airport_list)
@@ -126,6 +155,9 @@ possible_offices_c1_c2_c3_c4_c5_c6_coords = getOfficesCoords(possible_offices_c1
 ########################################################################################################
 
 # 30% of the company have at least 1 child (Schools < 5 km)
+
+input_school()
+
 school_list = venuesListByCategory(possible_offices_c1_c2_c3_c4_c5_c6_coords, 
 possible_offices_c1_c2_c3_c4_c5_c6,
  ['4f4533804b9074f6e4fb0105', '4bf58dd8d48988d13d941735','52e81612bcbc57f1066b7a46',
@@ -179,14 +211,19 @@ for i in range(len(startups_and_near_companies)):
             near_startups.append(startups_and_near_companies[i][0])
 
 # Output:
-print(f"The perfect location for your business is in {df_filtered.iloc[rowindex][10]}, {df_filtered.iloc[rowindex][12]}.")
-print(f"You don't have companies with more than {inputyears} years in a radius of 2 KM (blue circle).")
-print(f"The office is near successful tech startups that have raised at least {inputmoney} dollars.")
-print(f"Your employees will find a Starbucks just {distance_starbucks} meters from the office.")
-print(f"The vegan restaurant '{name_vegan}' can be found just {distance_vegan} meters from the office.")
-print(f"Party mood? You will find the night club called '{name_party}' just {distance_party} meters from the office.")
-print(f"If you need to travel often, there is no problem. You have an airport ({name_airport}) just {distance_airport} meters from the office.")
-print(f"And if that were not enough, your children could go to school ({name_school}) just {distance_school} meters from the office.")
+
+output(df_filtered.iloc[rowindex][10], df_filtered.iloc[rowindex][12],inputyears,
+inputmoney,distance_starbucks,name_vegan,distance_vegan,name_party,distance_party,
+name_airport,distance_airport,name_school,distance_school)
+
+# print(f"The perfect location for your business is in {df_filtered.iloc[rowindex][10]}, {df_filtered.iloc[rowindex][12]}.")
+# print(f"You don't have companies with more than {inputyears} years in a radius of 2 KM (blue circle).")
+# print(f"The office is near successful tech startups that have raised at least {inputmoney} dollars.")
+# print(f"Your employees will find a Starbucks just {distance_starbucks} meters from the office.")
+# print(f"The vegan restaurant '{name_vegan}' can be found just {distance_vegan} meters from the office.")
+# print(f"Party mood? You will find the night club called '{name_party}' just {distance_party} meters from the office.")
+# print(f"If you need to travel often, there is no problem. You have an airport ({name_airport}) just {distance_airport} meters from the office.")
+# print(f"And if that were not enough, your children could go to school ({name_school}) just {distance_school} meters from the office.")
 
 # map_city
 tooltip = 'Click me!'
