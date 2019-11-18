@@ -2,6 +2,7 @@
 # Importing packages:
 import folium
 import random
+import re
 import fontawesome as fa
 from src.CleanFilter import *
 from src.api import *
@@ -22,7 +23,15 @@ companies = list(coll.find())
 
 # Developers like to be near successful tech startups that have raised at least n (1 Million) dollars
 # inputmoney = 1000000
-inputmoney = 500000
+
+inputmoney = input(
+    '''
+    Developers like to be near successful tech startups that have raised at least (n) dollars.
+    Please enter valid integers, without thousands separator.
+    Example: For 1 million dollars, enter: 1000000
+    '''
+    )
+inputmoney = int(inputmoney)
 
 successful_tech_startups = list(coll.find({'$and':[{'$or':[
         {'category_code':'semiconductor'},{'category_code':'network_hosting'},{'category_code':'consulting'},
@@ -146,18 +155,28 @@ e = [df_filtered.iloc[rowindex][8], df_filtered.iloc[rowindex][7]]
 
 lat_long_starbucks = getLatLongVenue(cleaned_starbucks_list, df_filtered, rowindex)
 distance_starbucks = getDistanceVenue(cleaned_starbucks_list, df_filtered, rowindex)
+
 lat_long_vegan = getLatLongVenue(cleaned_vegan_list, df_filtered, rowindex)
 distance_vegan = getDistanceVenue(cleaned_vegan_list, df_filtered, rowindex)
 name_vegan = getNameVenue(cleaned_vegan_list, df_filtered, rowindex)
+
 lat_long_party = getLatLongVenue(cleaned_party_list, df_filtered, rowindex)
 distance_party = getDistanceVenue(cleaned_party_list, df_filtered, rowindex)
 name_party = getNameVenue(cleaned_party_list, df_filtered, rowindex)
+
 lat_long_airport = getLatLongVenue(cleaned_airport_list, df_filtered, rowindex)
 distance_airport = getDistanceVenue(cleaned_airport_list, df_filtered, rowindex)
 name_airport = getNameVenue(cleaned_airport_list, df_filtered, rowindex)
+
 lat_long_school = getLatLongVenue(cleaned_school_list, df_filtered, rowindex)
 distance_school = getDistanceVenue(cleaned_school_list, df_filtered, rowindex)
 name_school = getNameVenue(cleaned_school_list, df_filtered, rowindex)
+
+near_startups = []
+for i in range(len(startups_and_near_companies)):
+    for company in startups_and_near_companies[i][1]:
+        if company['name'] == df_filtered.iloc[rowindex][1]:
+            near_startups.append(startups_and_near_companies[i][0])
 
 # Output:
 print(f"The perfect location for your business is in {df_filtered.iloc[rowindex][10]}, {df_filtered.iloc[rowindex][12]}.")
@@ -171,27 +190,33 @@ print(f"And if that were not enough, your children could go to school ({name_sch
 
 # map_city
 tooltip = 'Click me!'
-map_city = folium.Map(location = e, zoom_start=14)
+map_city = folium.Map(location = e, zoom_start=13)
 folium.Circle(radius=2000,location=e,popup='Old companies free zone',color='#3186cc',
     fill=True,fill_color='#3186cc').add_to(map_city)
 folium.Marker(lat_long_starbucks,radius=2,icon=folium.Icon(
-    icon='coffee', prefix='fa',color='orange'),popup='Starbucks',
+    icon='coffee', prefix='fa',color='orange'),popup='<b>[Starbucks]</b>',
     tooltip=tooltip).add_to(map_city)
 folium.Marker(lat_long_vegan,radius=2,icon=folium.Icon(
-    icon='cutlery',color='green'),popup=f"Vegan restaurant: '{name_vegan}'",
+    icon='cutlery',color='green'),popup=f"<b>[Vegan restaurant]</b> '{name_vegan}'",
     tooltip=tooltip).add_to(map_city)
 folium.Marker(lat_long_party,radius=2,icon=folium.Icon(
-    icon='glass',color='purple'),popup=f"Night club: '{name_party}'",
+    icon='glass',color='purple'),popup=f"<b>[Night club]</b> '{name_party}'",
     tooltip=tooltip).add_to(map_city)
 folium.Marker(lat_long_airport,radius=2,icon=folium.Icon(
-    icon='plane', prefix='fa',color='blue'),popup=f"Airport: '{name_airport}'",
+    icon='plane', prefix='fa',color='blue'),popup=f"<b>[Airport]</b> '{name_airport}'",
     tooltip=tooltip).add_to(map_city)
 folium.Marker(lat_long_school,radius=2,icon=folium.Icon(
-    icon='graduation-cap', prefix='fa',color='gray'),popup=f"School: '{name_school}'",
+    icon='graduation-cap', prefix='fa',color='gray'),popup=f"<b>[School]</b> '{name_school}'",
     tooltip=tooltip).add_to(map_city)
 folium.Marker(e,radius=2,icon=folium.Icon(
     icon='briefcase', color='red'),popup='<b>Perfect location for your business</b>',
     tooltip=tooltip).add_to(map_city)
+for startup in near_startups:
+    category = re.sub("_"," ",startup[3].capitalize())
+    folium.Marker([startup[6], startup[5]],radius=2,icon=folium.Icon(
+        icon='building-o', prefix='fa',color='black'),
+        popup=f"<b>[Startup]</b> {startup[1]}. Founded year: {int(startup[2])}. Category: {category}. Total money raised (USD): {int(startup[4])}.",
+        tooltip=tooltip).add_to(map_city)
 map_city
 # map_city.save('./output/map.html')
 
