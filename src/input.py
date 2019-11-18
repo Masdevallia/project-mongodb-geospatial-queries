@@ -10,6 +10,8 @@ def title():
 
 def input_money():
     print('''
+
+
     ---------------------------------------------------------------------------------
         Developers like to be near successful tech startups that have raised at
         least (n) dollars.
@@ -22,6 +24,8 @@ def input_money():
 
 def input_year():
     print('''
+
+
     ---------------------------------------------------------------------------------
         Nobody in the company likes to have companies with more than (n) years in
         a radius of 2 KM.
@@ -34,6 +38,8 @@ def input_year():
 
 def input_starbucks():
     print('''
+
+
     ---------------------------------------------------------------------------------
         Executives like Starbucks A LOT. Ensure there's a Starbucks not to far.
     ---------------------------------------------------------------------------------
@@ -43,6 +49,8 @@ def input_starbucks():
 
 def input_vegan():
     print('''
+
+
     ---------------------------------------------------------------------------------
                                   The CEO is Vegan.
     ---------------------------------------------------------------------------------
@@ -52,6 +60,8 @@ def input_vegan():
 
 def input_party():
     print('''
+
+
     ---------------------------------------------------------------------------------
               All people in the company have between 25 and 40 years, 
                       give them some place to go to party.
@@ -62,6 +72,8 @@ def input_party():
 
 def input_airport():
     print('''
+
+
     ---------------------------------------------------------------------------------
                Account managers need to travel a lot (Airport < 25 km).
     ---------------------------------------------------------------------------------
@@ -71,6 +83,8 @@ def input_airport():
 
 def input_school():
     print('''
+
+    
     ---------------------------------------------------------------------------------
                30% of the company have at least 1 child (Schools < 5 km).
     ---------------------------------------------------------------------------------
