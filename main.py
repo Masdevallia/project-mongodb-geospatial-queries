@@ -32,10 +32,16 @@ successful_tech_startups = list(coll.find({'$and':[{'$or':[
         {'category_code':'biotech'}]},
     {'deadpooled_year': np.nan},{'founded_year':{'$gte':1999}},{'total_money_raised_USD':{'$gte':inputmoney}}]}))
 
+startups_and_near_companies = []
 possible_offices_criterion_1 = []
 for e in successful_tech_startups:
     near_companies = getCompaniesNear(e['office_1_location']['coordinates'][0],
                                       e['office_1_location']['coordinates'][1],2000)
+    aux = []
+    aux.append([e['_id'], e['name'], e['founded_year'], e['category_code'], e['total_money_raised'], 
+          e['office_1_longitude'], e['office_1_latitude']])
+    aux.append([near_companies[i] for i in range(len(near_companies)) if near_companies[i]['name'] != e['name']])    
+    startups_and_near_companies.append(aux)
     for f in near_companies:
         if f['_id'] != e['name']:
             possible_offices_criterion_1.append(f['_id'])
