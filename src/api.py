@@ -83,7 +83,7 @@ def venuesListByCategory(coords, offices, categories, radius):
     '''
     Restaurante vegetariano/vegano: '4bf58dd8d48988d1d3941735'
     Local nocturno: '4bf58dd8d48988d11f941735'
-    Aeropuerto: '4bf58dd8d48988d1ed931735'
+    Aeropuerto: '4bf58dd8d48988d1eb931735' ('4bf58dd8d48988d1ed931735')
     Colegios: ['4f4533804b9074f6e4fb0105', '4bf58dd8d48988d13d941735','52e81612bcbc57f1066b7a46','52e81612bcbc57f1066b7a45','4f4533814b9074f6e4fb0107','4f4533814b9074f6e4fb0106']
     '''
     aux_list = []

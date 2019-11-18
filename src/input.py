@@ -75,7 +75,7 @@ def input_airport():
 
 
     ---------------------------------------------------------------------------------
-               Account managers need to travel a lot (Airport < 25 km).
+                         Account managers need to travel a lot.
     ---------------------------------------------------------------------------------
                   Please wait. We are collecting some information...
     ''')
@@ -86,7 +86,7 @@ def input_school():
 
     
     ---------------------------------------------------------------------------------
-               30% of the company have at least 1 child (Schools < 5 km).
+                      30% of the company have at least 1 child.
     ---------------------------------------------------------------------------------
                   Please wait. We are collecting some information...
     ''')

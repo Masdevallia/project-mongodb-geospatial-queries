@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_a45e6521d14a49d394dfaba0e67aed9c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_a45e6521d14a49d394dfaba0e67aed9c" ></div>
+        
+</body>
+<script>    
+    
+            var map_a45e6521d14a49d394dfaba0e67aed9c = L.map(
+                "map_a45e6521d14a49d394dfaba0e67aed9c",
+                {
+                    center: [48.846726000000004, 2.321213],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 13,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_289654d22d6b4e6e9e760c9efc487304 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_a45e6521d14a49d394dfaba0e67aed9c);
+        
+    
+            var circle_dfedda321ae54b7c89b79663b42d6605 = L.circle(
+                [48.846726000000004, 2.321213],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 2000, "stroke": true, "weight": 3}
+            ).addTo(map_a45e6521d14a49d394dfaba0e67aed9c);
+        
+    
+        var popup_feccc79a59a94ce7a0b131cc7dddab97 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_2ea60c18c8f94a2eaee91e65fdaa1181 = $(`<div id="html_2ea60c18c8f94a2eaee91e65fdaa1181" style="width: 100.0%; height: 100.0%;">Old companies free zone</div>`)[0];
+            popup_feccc79a59a94ce7a0b131cc7dddab97.setContent(html_2ea60c18c8f94a2eaee91e65fdaa1181);
+        
+
+        circle_dfedda321ae54b7c89b79663b42d6605.bindPopup(popup_feccc79a59a94ce7a0b131cc7dddab97)
+        ;
+
+        
+    
+    
+            var marker_51f346c70e3c45529a67d78f79cfa6e7 = L.marker(
+                [48.843336, 2.324876],
+                {"radius": 2}
+            ).addTo(map_a45e6521d14a49d394dfaba0e67aed9c);
+        
+    
+            var icon_353ff29863fd488c8cf2275960d5898e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "coffee", "iconColor": "white", "markerColor": "orange", "prefix": "fa"}
+            );
+            marker_51f346c70e3c45529a67d78f79cfa6e7.setIcon(icon_353ff29863fd488c8cf2275960d5898e);
+        
+    
+        var popup_ed9ed9ecee8240d1acb7dc39b729d322 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ccab1bdeea4045d1bd59d1857aabc2fd = $(`<div id="html_ccab1bdeea4045d1bd59d1857aabc2fd" style="width: 100.0%; height: 100.0%;"><b>[Starbucks]</b></div>`)[0];
+            popup_ed9ed9ecee8240d1acb7dc39b729d322.setContent(html_ccab1bdeea4045d1bd59d1857aabc2fd);
+        
+
+        marker_51f346c70e3c45529a67d78f79cfa6e7.bindPopup(popup_ed9ed9ecee8240d1acb7dc39b729d322)
+        ;
+
+        
+    
+    
+            marker_51f346c70e3c45529a67d78f79cfa6e7.bindTooltip(
+                `<div>
+                     Click me!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_77e873bdeafe4ffba5e98253772d1f1a = L.marker(
+                [48.84720205764749, 2.3180414736270905],
+                {"radius": 2}
+            ).addTo(map_a45e6521d14a49d394dfaba0e67aed9c);
+        
+    
+            var icon_68b4753c79904b72914c67592f07b50c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "cutlery", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_77e873bdeafe4ffba5e98253772d1f1a.setIcon(icon_68b4753c79904b72914c67592f07b50c);
+        
+    
+        var popup_fca4ff26939c4c9ca44bb0fdd5f26ebc = L.popup({"maxWidth": "100%"});
+
+        
+            var html_086bb1018ae54831b9bcf1837ac48fed = $(`<div id="html_086bb1018ae54831b9bcf1837ac48fed" style="width: 100.0%; height: 100.0%;"><b>[Vegan restaurant]</b> 'Kook'</div>`)[0];
+            popup_fca4ff26939c4c9ca44bb0fdd5f26ebc.setContent(html_086bb1018ae54831b9bcf1837ac48fed);
+        
+
+        marker_77e873bdeafe4ffba5e98253772d1f1a.bindPopup(popup_fca4ff26939c4c9ca44bb0fdd5f26ebc)
+        ;
+
+        
+    
+    
+            marker_77e873bdeafe4ffba5e98253772d1f1a.bindTooltip(
+                `<div>
+                     Click me!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d85093b5d6a743afa09e584b5dd7fa0a = L.marker(
+                [48.843421736886775, 2.3234632293656334],
+                {"radius": 2}
+            ).addTo(map_a45e6521d14a49d394dfaba0e67aed9c);
+        
+    
+            var icon_7e8cd2152963487d909534dc4c9ec401 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "glass", "iconColor": "white", "markerColor": "purple", "prefix": "glyphicon"}
+            );
+            marker_d85093b5d6a743afa09e584b5dd7fa0a.setIcon(icon_7e8cd2152963487d909534dc4c9ec401);
+        
+    
+        var popup_742d371f0476430b87744d022cdea360 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_821d876ed7a54658a3dc3ad3e4190a3d = $(`<div id="html_821d876ed7a54658a3dc3ad3e4190a3d" style="width: 100.0%; height: 100.0%;"><b>[Night club]</b> 'Tout le Monde en Parle'</div>`)[0];
+            popup_742d371f0476430b87744d022cdea360.setContent(html_821d876ed7a54658a3dc3ad3e4190a3d);
+        
+
+        marker_d85093b5d6a743afa09e584b5dd7fa0a.bindPopup(popup_742d371f0476430b87744d022cdea360)
+        ;
+
+        
+    
+    
+            marker_d85093b5d6a743afa09e584b5dd7fa0a.bindTooltip(
+                `<div>
+                     Click me!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a3ca3045100140a7b303f8e39f349447 = L.marker(
+                [48.847831304573646, 2.3093095421791077],
+                {"radius": 2}
+            ).addTo(map_a45e6521d14a49d394dfaba0e67aed9c);
+        
+    
+            var icon_cb489d5fde104c53ab84669bfc005737 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plane", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_a3ca3045100140a7b303f8e39f349447.setIcon(icon_cb489d5fde104c53ab84669bfc005737);
+        
+    
+        var popup_0841d20d7ce04d5e9570b59069c12f71 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ce13f186ed284ab5a9777b7ff65ca6f7 = $(`<div id="html_ce13f186ed284ab5a9777b7ff65ca6f7" style="width: 100.0%; height: 100.0%;"><b>[Airport]</b> 'Sixt location de voitures'</div>`)[0];
+            popup_0841d20d7ce04d5e9570b59069c12f71.setContent(html_ce13f186ed284ab5a9777b7ff65ca6f7);
+        
+
+        marker_a3ca3045100140a7b303f8e39f349447.bindPopup(popup_0841d20d7ce04d5e9570b59069c12f71)
+        ;
+
+        
+    
+    
+            marker_a3ca3045100140a7b303f8e39f349447.bindTooltip(
+                `<div>
+                     Click me!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_87aa64539e1b4aeba912eec756dd77a0 = L.marker(
+                [48.84599358670175, 2.323234798013558],
+                {"radius": 2}
+            ).addTo(map_a45e6521d14a49d394dfaba0e67aed9c);
+        
+    
+            var icon_ab111c5953cd4e2592a4e3ab77abd01d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "graduation-cap", "iconColor": "white", "markerColor": "gray", "prefix": "fa"}
+            );
+            marker_87aa64539e1b4aeba912eec756dd77a0.setIcon(icon_ab111c5953cd4e2592a4e3ab77abd01d);
+        
+    
+        var popup_29406332ddad4b4da3e884ddb1318f05 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_68a86a6d47df48798fcf811ff22280a0 = $(`<div id="html_68a86a6d47df48798fcf811ff22280a0" style="width: 100.0%; height: 100.0%;"><b>[School]</b> 'Lycée Saint-Nicolas'</div>`)[0];
+            popup_29406332ddad4b4da3e884ddb1318f05.setContent(html_68a86a6d47df48798fcf811ff22280a0);
+        
+
+        marker_87aa64539e1b4aeba912eec756dd77a0.bindPopup(popup_29406332ddad4b4da3e884ddb1318f05)
+        ;
+
+        
+    
+    
+            marker_87aa64539e1b4aeba912eec756dd77a0.bindTooltip(
+                `<div>
+                     Click me!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_472b34cc528f4f1ba5912b71944be661 = L.marker(
+                [48.846726000000004, 2.321213],
+                {"radius": 2}
+            ).addTo(map_a45e6521d14a49d394dfaba0e67aed9c);
+        
+    
+            var icon_0e517ac1ca3849218e4c184f1dcc1b65 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "briefcase", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_472b34cc528f4f1ba5912b71944be661.setIcon(icon_0e517ac1ca3849218e4c184f1dcc1b65);
+        
+    
+        var popup_23e0b853099a4571b5f5b3a96f62d2b7 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_f913493c830e408ba1a1f4316489d996 = $(`<div id="html_f913493c830e408ba1a1f4316489d996" style="width: 100.0%; height: 100.0%;"><b>Perfect location for your business</b></div>`)[0];
+            popup_23e0b853099a4571b5f5b3a96f62d2b7.setContent(html_f913493c830e408ba1a1f4316489d996);
+        
+
+        marker_472b34cc528f4f1ba5912b71944be661.bindPopup(popup_23e0b853099a4571b5f5b3a96f62d2b7)
+        ;
+
+        
+    
+    
+            marker_472b34cc528f4f1ba5912b71944be661.bindTooltip(
+                `<div>
+                     Click me!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ecef17eb8c074be8b26aba37b04cf0f7 = L.marker(
+                [48.8545738, 2.3216223],
+                {"radius": 2}
+            ).addTo(map_a45e6521d14a49d394dfaba0e67aed9c);
+        
+    
+            var icon_a03f27828eae45799653162d07f9e00f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "building-o", "iconColor": "white", "markerColor": "black", "prefix": "fa"}
+            );
+            marker_ecef17eb8c074be8b26aba37b04cf0f7.setIcon(icon_a03f27828eae45799653162d07f9e00f);
+        
+    
+        var popup_855117573e2c452eba7f68ff83c94393 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_55ebc47de067454e8368b06186dc800a = $(`<div id="html_55ebc47de067454e8368b06186dc800a" style="width: 100.0%; height: 100.0%;"><b>[Startup]</b> EcoVadis. Founded year: 2007. Category: Cleantech. Total money raised (USD): 1400000.</div>`)[0];
+            popup_855117573e2c452eba7f68ff83c94393.setContent(html_55ebc47de067454e8368b06186dc800a);
+        
+
+        marker_ecef17eb8c074be8b26aba37b04cf0f7.bindPopup(popup_855117573e2c452eba7f68ff83c94393)
+        ;
+
+        
+    
+    
+            marker_ecef17eb8c074be8b26aba37b04cf0f7.bindTooltip(
+                `<div>
+                     Click me!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c90b74176c294bc7b085eb9031d6cbf8 = L.marker(
+                [48.8545738, 2.3216223],
+                {"radius": 2}
+            ).addTo(map_a45e6521d14a49d394dfaba0e67aed9c);
+        
+    
+            var icon_9c2c3935f61744f180e039dda3b02dd4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "building-o", "iconColor": "white", "markerColor": "black", "prefix": "fa"}
+            );
+            marker_c90b74176c294bc7b085eb9031d6cbf8.setIcon(icon_9c2c3935f61744f180e039dda3b02dd4);
+        
+    
+        var popup_3da6494ca4af49fe9f1f4ecd81e60ae5 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_138cecce46674517a5c77a5225d7cf7b = $(`<div id="html_138cecce46674517a5c77a5225d7cf7b" style="width: 100.0%; height: 100.0%;"><b>[Startup]</b> EcoVadis. Founded year: 2007. Category: Cleantech. Total money raised (USD): 1400000.</div>`)[0];
+            popup_3da6494ca4af49fe9f1f4ecd81e60ae5.setContent(html_138cecce46674517a5c77a5225d7cf7b);
+        
+
+        marker_c90b74176c294bc7b085eb9031d6cbf8.bindPopup(popup_3da6494ca4af49fe9f1f4ecd81e60ae5)
+        ;
+
+        
+    
+    
+            marker_c90b74176c294bc7b085eb9031d6cbf8.bindTooltip(
+                `<div>
+                     Click me!
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>

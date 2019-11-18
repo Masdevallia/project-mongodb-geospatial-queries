@@ -6,6 +6,8 @@ import folium
 import random
 import re
 import fontawesome as fa
+from pathlib import Path
+import webbrowser
 from src.CleanFilter import *
 from src.api import *
 from src.mongodb import *
@@ -147,12 +149,13 @@ possible_offices_c1_c2_c3_c4_c5_coords = getOfficesCoords(possible_offices_c1_c2
 
 ########################################################################################################
 
-# Account managers need to travel a lot (Airport < 25 km)
+# Account managers need to travel a lot (Airport < 40 km)
 
 input_airport()
 
 airport_list = venuesListByCategory(possible_offices_c1_c2_c3_c4_c5_coords, possible_offices_c1_c2_c3_c4_c5,
- '4bf58dd8d48988d1ed931735', 25000)
+ '4bf58dd8d48988d1eb931735', 40000)
+
 cleaned_airport_list = cleanVenueList(airport_list)
 possible_offices_c1_c2_c3_c4_c5_c6 = [e[0] for e in cleaned_airport_list]
 possible_offices_c1_c2_c3_c4_c5_c6_to_string = [str(e) for e in possible_offices_c1_c2_c3_c4_c5_c6]
@@ -179,6 +182,8 @@ if len(possible_offices_c1_c2_c3_c4_c5_c6_c7_coords) < 1:
     print("We are sorry, there aren't any available locations for your company in our database.")
 
 else:
+    print('\nPlease wait, in a few seconds we will offer you the perfect location for your company.')
+
     # Filtered DF:
     indexs = []
     for i in range(len(df)):
@@ -186,13 +191,11 @@ else:
             indexs.append(i)
     df_filtered = df.iloc[indexs]
 
-    # Folium map:
-
     # Select one random row:
     rowindex = random.choice(range(0,len(df_filtered)))
-
     e = [df_filtered.iloc[rowindex][8], df_filtered.iloc[rowindex][7]]
 
+    # Lat and long:
     lat_long_starbucks = getLatLongVenue(cleaned_starbucks_list, df_filtered, rowindex)
     distance_starbucks = getDistanceVenue(cleaned_starbucks_list, df_filtered, rowindex)
 
@@ -219,21 +222,11 @@ else:
                 near_startups.append(startups_and_near_companies[i][0])
 
     # Output:
+    printoutput(df_filtered.iloc[rowindex][10], df_filtered.iloc[rowindex][12], inputyears,
+    inputmoney, distance_starbucks, name_vegan, distance_vegan, name_party, distance_party,
+    name_airport, distance_airport, name_school, distance_school)
 
-    output(df_filtered.iloc[rowindex][10], df_filtered.iloc[rowindex][12],inputyears,
-    inputmoney,distance_starbucks,name_vegan,distance_vegan,name_party,distance_party,
-    name_airport,distance_airport,name_school,distance_school)
-
-    # print(f"The perfect location for your business is in {df_filtered.iloc[rowindex][10]}, {df_filtered.iloc[rowindex][12]}.")
-    # print(f"You don't have companies with more than {inputyears} years in a radius of 2 KM (blue circle).")
-    # print(f"The office is near successful tech startups that have raised at least {inputmoney} dollars.")
-    # print(f"Your employees will find a Starbucks just {distance_starbucks} meters from the office.")
-    # print(f"The vegan restaurant '{name_vegan}' can be found just {distance_vegan} meters from the office.")
-    # print(f"Party mood? You will find the night club called '{name_party}' just {distance_party} meters from the office.")
-    # print(f"If you need to travel often, there is no problem. You have an airport ({name_airport}) just {distance_airport} meters from the office.")
-    # print(f"And if that were not enough, your children could go to school ({name_school}) just {distance_school} meters from the office.")
-
-    # map_city
+    # Folium map:
     tooltip = 'Click me!'
     map_city = folium.Map(location = e, zoom_start=13)
     folium.Circle(radius=2000,location=e,popup='Old companies free zone',color='#3186cc',
@@ -261,7 +254,7 @@ else:
         folium.Marker([startup[6], startup[5]],radius=2,icon=folium.Icon(
             icon='building-o', prefix='fa',color='black'),
             popup=f"<b>[Startup]</b> {startup[1]}. Founded year: {int(startup[2])}. Category: {category}. Total money raised (USD): {int(startup[4])}.",
-            tooltip=tooltip).add_to(map_city)
-    map_city
-    # map_city.save('./output/map.html')
-
+            tooltip=tooltip).add_to(map_city) 
+    map_city.save('./output/map.html')
+    url = "file://{}{}{}".format(str(Path(os.getcwd())),"/output", "/map.html")
+    webbrowser.open(url, 2)
