@@ -2,12 +2,6 @@
 print('Please wait...')
 
 # Importing packages:
-import folium
-import random
-import re
-import fontawesome as fa
-from pathlib import Path
-import webbrowser
 from src.CleanFilter import *
 from src.api import *
 from src.mongodb import *
@@ -33,7 +27,6 @@ companies = list(coll.find())
 # inputmoney = 1000000
 
 input_money()
-
 while True:
     inputmoney = input('n = ')
     try:
@@ -42,7 +35,6 @@ while True:
     except ValueError:
         print('Please enter a valid integer')
         continue
-
 print('Please wait...')
 
 successful_tech_startups = list(coll.find({'$and':[{'$or':[
@@ -101,19 +93,18 @@ not_possible_offices_c2 = list(set(not_possible_offices_criterion_2))
 ########################################################################################################
 
 # Taking into account both criteria:
-possible_offices_c1_c2 = []
-for e in possible_offices_c1:
-    if e not in not_possible_offices_c2:
-        possible_offices_c1_c2.append(e)
+# possible_offices_c1_c2 = []
+# for e in possible_offices_c1:
+    # if e not in not_possible_offices_c2:
+        # possible_offices_c1_c2.append(e)
+possible_offices_c1_c2 = valuesInCommon(possible_offices_c1, not_possible_offices_c2)
 possible_offices_c1_c2_to_string = [str(e) for e in possible_offices_c1_c2]
 possible_offices_c1_c2_coords = getOfficesCoords(possible_offices_c1_c2, companies)
 
 ########################################################################################################
 
 # Executives like Starbucks A LOT. Ensure there's a starbucks not to far
-
 input_starbucks()
-
 starbucks_list = venuesListByQuery(possible_offices_c1_c2_coords, possible_offices_c1_c2, 'starbucks', 1000)
 cleaned_starbucks_list = cleanVenueList(starbucks_list)              
 possible_offices_c1_c2_c3 = [e[0] for e in cleaned_starbucks_list]
@@ -123,9 +114,7 @@ possible_offices_c1_c2_c3_coords = getOfficesCoords(possible_offices_c1_c2_c3, c
 ########################################################################################################
 
 # The CEO is Vegan
-
 input_vegan()
-
 # vegan_list = venuesListByQuery(possible_offices_c1_c2_c3_coords, possible_offices_c1_c2_c3, 'vegan', 1000)
 vegan_list = venuesListByCategory(possible_offices_c1_c2_c3_coords, possible_offices_c1_c2_c3,
              '4bf58dd8d48988d1d3941735', 1000)
@@ -137,9 +126,7 @@ possible_offices_c1_c2_c3_c4_coords = getOfficesCoords(possible_offices_c1_c2_c3
 ########################################################################################################
 
 # All people in the company have between 25 and 40 years, give them some place to go to party
-
 input_party()
-
 party_list = venuesListByCategory(possible_offices_c1_c2_c3_c4_coords, possible_offices_c1_c2_c3_c4,
  '4bf58dd8d48988d11f941735', 1000)
 cleaned_party_list = cleanVenueList(party_list)
@@ -150,12 +137,9 @@ possible_offices_c1_c2_c3_c4_c5_coords = getOfficesCoords(possible_offices_c1_c2
 ########################################################################################################
 
 # Account managers need to travel a lot (Airport < 40 km)
-
 input_airport()
-
 airport_list = venuesListByCategory(possible_offices_c1_c2_c3_c4_c5_coords, possible_offices_c1_c2_c3_c4_c5,
  '4bf58dd8d48988d1eb931735', 40000)
-
 cleaned_airport_list = cleanVenueList(airport_list)
 possible_offices_c1_c2_c3_c4_c5_c6 = [e[0] for e in cleaned_airport_list]
 possible_offices_c1_c2_c3_c4_c5_c6_to_string = [str(e) for e in possible_offices_c1_c2_c3_c4_c5_c6]
@@ -164,9 +148,7 @@ possible_offices_c1_c2_c3_c4_c5_c6_coords = getOfficesCoords(possible_offices_c1
 ########################################################################################################
 
 # 30% of the company have at least 1 child (Schools < 5 km)
-
 input_school()
-
 school_list = venuesListByCategory(possible_offices_c1_c2_c3_c4_c5_c6_coords, 
 possible_offices_c1_c2_c3_c4_c5_c6,
  ['4f4533804b9074f6e4fb0105', '4bf58dd8d48988d13d941735','52e81612bcbc57f1066b7a46',
@@ -196,6 +178,7 @@ else:
     e = [df_filtered.iloc[rowindex][8], df_filtered.iloc[rowindex][7]]
 
     # Lat and long:
+
     lat_long_starbucks = getLatLongVenue(cleaned_starbucks_list, df_filtered, rowindex)
     distance_starbucks = getDistanceVenue(cleaned_starbucks_list, df_filtered, rowindex)
 

@@ -2,6 +2,14 @@
 import pandas as pd
 import numpy as np
 
+import folium
+import random
+import re
+import fontawesome as fa
+from pathlib import Path
+import webbrowser
+
+
 def set_key(dictionary, key, value):
     '''
     Function that fills dictionaries.
@@ -13,6 +21,14 @@ def set_key(dictionary, key, value):
         dictionary[key].append(value)
     else:
         dictionary[key] = [dictionary[key], value]
+
+
+def valuesInCommon(List1, List2):
+    aux = []
+    for e in List1:
+        if e not in List2:
+            aux.append(e)
+    return aux
 
 
 def getOfficesCoords(officesID, collection):
@@ -60,3 +76,5 @@ def getNameVenue(venueList, df, rowindex):
         if str(venueList[i][0]) == df.iloc[rowindex][0]:
             aux += venueList[i][5]
     return aux
+
+
