@@ -23,11 +23,14 @@ def printoutput(a,b,c,d,e,f,g,h,i,j,k,l,m):
 
         The vegan restaurant '{f}' can be found just {g} m from the office.
 
-        Party mood? You will find the night club called '{h}' just {i} m from the office.
+        Party mood? You will find the night club called '{h}'
+        just {i} m from the office.
 
-        If you need to travel often, there is no problem. You have an airport ({j}) just {k} km from the office.
+        If you need to travel often, there is no problem. You have an airport
+        ({j}) just {k} km from the office.
 
-        And if that were not enough, your children could go to school ({l}) just {m} m from the office.
+        And if that were not enough, your children could go to school ({l})
+        just {m} m from the office.
     ''')
 
 

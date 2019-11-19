@@ -1,5 +1,5 @@
 
-print('Please wait...')
+print('\nPlease wait...')
 
 # Importing packages:
 from src.CleanFilter import *
@@ -35,7 +35,7 @@ while True:
     except ValueError:
         print('Please enter a valid integer')
         continue
-print('Please wait...')
+print('\nPlease wait...')
 
 successful_tech_startups = list(coll.find({'$and':[{'$or':[
         {'category_code':'semiconductor'},{'category_code':'network_hosting'},{'category_code':'consulting'},
@@ -76,7 +76,7 @@ while True:
         print('Please enter a valid integer')
         continue
 
-print('Please wait...')
+print('\nPlease wait...')
 
 old_companies = list(coll.find({'$and':[{'deadpooled_year': np.nan},{'founded_year':{'$lte':2019-inputyears}}]}))
 
@@ -185,10 +185,16 @@ possible_offices_c1_c2_c3_c4_c5_c6_c7_coords = getOfficesCoords(possible_offices
 ########################################################################################################
 
 if len(possible_offices_c1_c2_c3_c4_c5_c6_c7_coords) < 1:
-    print("We are sorry, there aren't any available locations for your company in our database.")
+    print('''
+        
+        We are sorry, there aren't any available locations for your company in our database.
+        ''')
 
 else:
-    print('\nPlease wait, in a few seconds we will offer you the perfect location for your company.')
+    print('''
+    
+        Please wait, in a few seconds we will offer you the perfect location for your company!
+    ''')
 
     # Filtered DF:
     indexs = []

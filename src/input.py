@@ -14,7 +14,7 @@ from colorama import Fore, Back, Style
 def title():
     print(Fore.MAGENTA + '''
     ----------------------------------------------------------------------------------------------------
-                                FIND THE PERFECT LOCATION FOR YOUR COMPANY              
+                                 FIND THE PERFECT LOCATION FOR YOUR COMPANY              
     ----------------------------------------------------------------------------------------------------
     ''')
 
@@ -25,11 +25,11 @@ def input_money():
     print(Fore.MAGENTA + '''
 
     
-        Developers like to be near successful tech startups that have raised at least (n) dollars.
+         Developers like to be near successful tech startups that have raised at least (n) dollars.
     ----------------------------------------------------------------------------------------------------''')
-    print(Fore.WHITE + '''                          What amount of money should they have raised?
-                                                Please enter a valid integer, without thousands separator.
-                                                    Example: For 1 million dollars, enter: 1000000''')
+    print(Fore.WHITE + '''                              What amount of money should they have raised?
+                        Please enter a valid integer, without thousands separator.
+                             Example: For 1 million dollars, enter: 1000000''')
 
 
 
@@ -40,9 +40,9 @@ def input_year():
 
         Nobody in the company likes to have companies with more than (n) years in a radius of 2 KM.
     ----------------------------------------------------------------------------------------------------''')
-    print(Fore.WHITE + '''                          How old can these companies be at most?
-                                                        Please enter a valid integer.
-                                                    Example: For 10 years, enter: 10''')
+    print(Fore.WHITE + '''                                  How old can these companies be, at most?
+                                       Please enter a valid integer.
+                                     Example: For 10 years, enter: 10''')
 
 
 
