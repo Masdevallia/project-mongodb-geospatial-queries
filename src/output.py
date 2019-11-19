@@ -1,13 +1,20 @@
 
 
+from colorama import init
+init()
+from colorama import Fore, Back, Style
+
+
 def printoutput(a,b,c,d,e,f,g,h,i,j,k,l,m):
-    print(f'''
+    print(Fore.MAGENTA + '''
 
 
     ----------------------------------------------------------------------------------------------------
                             WE HAVE FOUND THE PERFECT LOCATION FOR YOUR COMPANY!           
     ----------------------------------------------------------------------------------------------------
-    
+''')
+    print(Fore.WHITE + f'''
+
         The perfect location for your business is in {a}, {b}.
 
         You don't have companies with more than {c} years in a radius of 2 KM (blue circle).
@@ -26,3 +33,6 @@ def printoutput(a,b,c,d,e,f,g,h,i,j,k,l,m):
 
 ''')
 
+
+
+print(Style.RESET_ALL)
