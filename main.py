@@ -243,11 +243,11 @@ else:
     # Output:
     printoutput(df_filtered.iloc[rowindex][10], df_filtered.iloc[rowindex][12], inputyears,
     inputmoney, distance_starbucks, name_vegan, distance_vegan, name_party, distance_party,
-    name_dist_lat_long_airport[0], round(name_dist_lat_long_airport[1],2), name_school, distance_school)
+    int(len(name_dist_lat_long_airport)/4), name_school, distance_school)
 
     # Folium map:
     tooltip = 'Click me!'
-    map_city = folium.Map(location = e, zoom_start=13)
+    map_city = folium.Map(location = e, zoom_start=11)
     folium.Circle(radius=2000,location=e,popup='Old companies free zone',color='#3186cc',
         fill=True,fill_color='#3186cc').add_to(map_city)
     folium.Marker(lat_long_starbucks,radius=2,icon=folium.Icon(
@@ -259,9 +259,11 @@ else:
     folium.Marker(lat_long_party,radius=2,icon=folium.Icon(
         icon='glass',color='purple'),popup=f"<b>[Night club]</b> '{name_party}'",
         tooltip=tooltip).add_to(map_city)
-    folium.Marker([name_dist_lat_long_airport[2],name_dist_lat_long_airport[3]],radius=2,icon=folium.Icon(
-        icon='plane', prefix='fa',color='blue'),popup=f"<b>[Airport]</b> '{name_dist_lat_long_airport[0]}'",
-        tooltip=tooltip).add_to(map_city)
+    for i in range(0,len(name_dist_lat_long_airport),4):
+        folium.Marker([name_dist_lat_long_airport[i+2],name_dist_lat_long_airport[i+3]],radius=2,icon=folium.Icon(
+            icon='plane', prefix='fa',color='blue'),
+            popup=f"<b>[Airport]</b> '{name_dist_lat_long_airport[i+0]}'. Distance from the office: {int(name_dist_lat_long_airport[i+1])} km",
+            tooltip=tooltip).add_to(map_city)
     folium.Marker(lat_long_school,radius=2,icon=folium.Icon(
         icon='graduation-cap', prefix='fa',color='gray'),popup=f"<b>[School]</b> '{name_school}'",
         tooltip=tooltip).add_to(map_city)
