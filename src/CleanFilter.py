@@ -8,6 +8,7 @@ import re
 import fontawesome as fa
 from pathlib import Path
 import webbrowser
+import geopy.distance
 
 
 def set_key(dictionary, key, value):

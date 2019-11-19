@@ -26,14 +26,10 @@ def input_money():
 
     
         Developers like to be near successful tech startups that have raised at least (n) dollars.
-    ----------------------------------------------------------------------------------------------------
-    ''')
-    print(Fore.WHITE + '''
-        What amount of money should they have raised?
-        Please enter a valid integer, without thousands separator.
-        Example: For 1 million dollars, enter: 1000000
-
-    ''')
+    ----------------------------------------------------------------------------------------------------''')
+    print(Fore.WHITE + '''                          What amount of money should they have raised?
+                                                Please enter a valid integer, without thousands separator.
+                                                    Example: For 1 million dollars, enter: 1000000''')
 
 
 
@@ -43,14 +39,10 @@ def input_year():
 
 
         Nobody in the company likes to have companies with more than (n) years in a radius of 2 KM.
-    ----------------------------------------------------------------------------------------------------
-    ''')
-    print(Fore.WHITE + '''
-        How old can these companies be at most?
-        Please enter a valid integer.
-        Example: For 10 years, enter: 10
-    
-    ''')
+    ----------------------------------------------------------------------------------------------------''')
+    print(Fore.WHITE + '''                          How old can these companies be at most?
+                                                        Please enter a valid integer.
+                                                    Example: For 10 years, enter: 10''')
 
 
 
@@ -60,11 +52,8 @@ def input_starbucks():
 
 
                     Executives like Starbucks A LOT. Ensure there's a Starbucks not to far.
-    ----------------------------------------------------------------------------------------------------
-    ''')
-    print(Fore.WHITE + '''
-                            Please wait. We are collecting some information...
-    ''')
+    ----------------------------------------------------------------------------------------------------''')
+    print(Fore.WHITE + '''                          Please wait. We are collecting some information...''')
 
 
 
@@ -74,11 +63,8 @@ def input_vegan():
 
 
                                         The CEO is Vegan.
-    ----------------------------------------------------------------------------------------------------
-    ''')
-    print(Fore.WHITE + '''
-                            Please wait. We are collecting some information...
-    ''')
+    ----------------------------------------------------------------------------------------------------''')
+    print(Fore.WHITE + '''                          Please wait. We are collecting some information...''')
 
 
 
@@ -88,11 +74,8 @@ def input_party():
 
 
         All people in the company have between 25 and 40 years, give them some place to go to party.
-    ----------------------------------------------------------------------------------------------------
-    ''')
-    print(Fore.WHITE + '''
-                            Please wait. We are collecting some information...
-    ''')
+    ----------------------------------------------------------------------------------------------------''')
+    print(Fore.WHITE + '''                          Please wait. We are collecting some information...''')
 
 
 
@@ -102,11 +85,8 @@ def input_airport():
 
 
                                 Account managers need to travel a lot.
-    ----------------------------------------------------------------------------------------------------
-    ''')
-    print(Fore.WHITE + '''
-                            Please wait. We are collecting some information...
-    ''')
+    ----------------------------------------------------------------------------------------------------''')
+    print(Fore.WHITE + '''                          Please wait. We are collecting some information...''')
 
 
 
@@ -116,11 +96,8 @@ def input_school():
 
     
                                 30% of the company have at least 1 child.
-    ----------------------------------------------------------------------------------------------------
-    ''')
-    print(Fore.WHITE + '''
-                            Please wait. We are collecting some information...
-    ''')
+    ----------------------------------------------------------------------------------------------------''')
+    print(Fore.WHITE + '''                          Please wait. We are collecting some information...''')
 
 
 

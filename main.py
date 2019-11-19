@@ -93,59 +93,81 @@ not_possible_offices_c2 = list(set(not_possible_offices_criterion_2))
 ########################################################################################################
 
 # Taking into account both criteria:
-# possible_offices_c1_c2 = []
-# for e in possible_offices_c1:
-    # if e not in not_possible_offices_c2:
-        # possible_offices_c1_c2.append(e)
 possible_offices_c1_c2 = valuesInCommon(possible_offices_c1, not_possible_offices_c2)
 possible_offices_c1_c2_to_string = [str(e) for e in possible_offices_c1_c2]
 possible_offices_c1_c2_coords = getOfficesCoords(possible_offices_c1_c2, companies)
 
 ########################################################################################################
 
-# Executives like Starbucks A LOT. Ensure there's a starbucks not to far
-input_starbucks()
-starbucks_list = venuesListByQuery(possible_offices_c1_c2_coords, possible_offices_c1_c2, 'starbucks', 1000)
-cleaned_starbucks_list = cleanVenueList(starbucks_list)              
-possible_offices_c1_c2_c3 = [e[0] for e in cleaned_starbucks_list]
+# Account managers need to travel a lot (Airport < 20 km)
+input_airport()
+airports_df = pd.read_csv('./input/airports.csv', header=None,usecols=[1,2,3,4,6,7,12], 
+                          names=['FacilityName', 'City', 'Country','3CharCode','Lat','Long','FacilityType'])
+airports_df = airports_df[airports_df['FacilityType']=='airport']
+airports_df.reset_index(drop=True, inplace=True)
+
+distances = []
+for e in possible_offices_c1_c2_coords:
+    coords_1 = (e['coordinates'][1], e['coordinates'][0])
+    dist = []
+    for i in range(len(airports_df)):
+        coords_2 = (airports_df.at[i,'Lat'],airports_df.at[i,'Long'])
+        dist.append(geopy.distance.geodesic(coords_1, coords_2).km)
+    distances.append(dist)    
+
+office_airports = []
+for i in range(len(distances)):
+    aux = []
+    aux.append(possible_offices_c1_c2[i])
+    for j in range(len(distances[i])):
+        if distances[i][j] <= 20:
+            aux.append([airports_df.at[j,'FacilityName'],
+                        distances[i][j],
+                        airports_df.at[j,'Lat'],
+                        airports_df.at[j,'Long']])
+    office_airports.append(aux)
+
+possible_offices_c1_c2_c3 = []
+for e in office_airports:
+    if len(e) >= 2:
+        possible_offices_c1_c2_c3.append(e[0])
+
 possible_offices_c1_c2_c3_to_string = [str(e) for e in possible_offices_c1_c2_c3]
 possible_offices_c1_c2_c3_coords = getOfficesCoords(possible_offices_c1_c2_c3, companies)
 
 ########################################################################################################
 
-# The CEO is Vegan
-input_vegan()
-# vegan_list = venuesListByQuery(possible_offices_c1_c2_c3_coords, possible_offices_c1_c2_c3, 'vegan', 1000)
-vegan_list = venuesListByCategory(possible_offices_c1_c2_c3_coords, possible_offices_c1_c2_c3,
-             '4bf58dd8d48988d1d3941735', 1000)
-cleaned_vegan_list = cleanVenueList(vegan_list)
-possible_offices_c1_c2_c3_c4 = [e[0] for e in cleaned_vegan_list]
+# Executives like Starbucks A LOT. Ensure there's a starbucks not to far
+input_starbucks()
+starbucks_list = venuesListByQuery(possible_offices_c1_c2_c3_coords, possible_offices_c1_c2_c3,
+                                  'starbucks', 1000)
+cleaned_starbucks_list = cleanVenueList(starbucks_list)              
+possible_offices_c1_c2_c3_c4 = [e[0] for e in cleaned_starbucks_list]
 possible_offices_c1_c2_c3_c4_to_string = [str(e) for e in possible_offices_c1_c2_c3_c4]
 possible_offices_c1_c2_c3_c4_coords = getOfficesCoords(possible_offices_c1_c2_c3_c4, companies)
 
 ########################################################################################################
 
-# All people in the company have between 25 and 40 years, give them some place to go to party
-input_party()
-party_list = venuesListByCategory(possible_offices_c1_c2_c3_c4_coords, possible_offices_c1_c2_c3_c4,
- '4bf58dd8d48988d11f941735', 1000)
-cleaned_party_list = cleanVenueList(party_list)
-possible_offices_c1_c2_c3_c4_c5 = [e[0] for e in cleaned_party_list]
+# The CEO is Vegan
+input_vegan()
+# vegan_list = venuesListByQuery(possible_offices_c1_c2_c3_c4_coords, possible_offices_c1_c2_c3_c4, 'vegan', 1000)
+vegan_list = venuesListByCategory(possible_offices_c1_c2_c3_c4_coords, possible_offices_c1_c2_c3_c4,
+             '4bf58dd8d48988d1d3941735', 1000)
+cleaned_vegan_list = cleanVenueList(vegan_list)
+possible_offices_c1_c2_c3_c4_c5 = [e[0] for e in cleaned_vegan_list]
 possible_offices_c1_c2_c3_c4_c5_to_string = [str(e) for e in possible_offices_c1_c2_c3_c4_c5]
 possible_offices_c1_c2_c3_c4_c5_coords = getOfficesCoords(possible_offices_c1_c2_c3_c4_c5, companies)
 
 ########################################################################################################
 
-# Account managers need to travel a lot (Airport < 40 km)
-input_airport()
-df = pd.read_csv('./input/airports.csv')
-
-# airport_list = venuesListByCategory(possible_offices_c1_c2_c3_c4_c5_coords, possible_offices_c1_c2_c3_c4_c5,
-# '4bf58dd8d48988d1eb931735', 40000)
-# cleaned_airport_list = cleanVenueList(airport_list)
-# possible_offices_c1_c2_c3_c4_c5_c6 = [e[0] for e in cleaned_airport_list]
-# possible_offices_c1_c2_c3_c4_c5_c6_to_string = [str(e) for e in possible_offices_c1_c2_c3_c4_c5_c6]
-# possible_offices_c1_c2_c3_c4_c5_c6_coords = getOfficesCoords(possible_offices_c1_c2_c3_c4_c5_c6, companies)
+# All people in the company have between 25 and 40 years, give them some place to go to party
+input_party()
+party_list = venuesListByCategory(possible_offices_c1_c2_c3_c4_c5_coords, possible_offices_c1_c2_c3_c4_c5,
+ '4bf58dd8d48988d11f941735', 1000)
+cleaned_party_list = cleanVenueList(party_list)
+possible_offices_c1_c2_c3_c4_c5_c6 = [e[0] for e in cleaned_party_list]
+possible_offices_c1_c2_c3_c4_c5_c6_to_string = [str(e) for e in possible_offices_c1_c2_c3_c4_c5_c6]
+possible_offices_c1_c2_c3_c4_c5_c6_coords = getOfficesCoords(possible_offices_c1_c2_c3_c4_c5_c6, companies)
 
 ########################################################################################################
 
@@ -174,6 +196,7 @@ else:
         if df['_id'][i] in possible_offices_c1_c2_c3_c4_c5_c6_c7_to_string:
             indexs.append(i)
     df_filtered = df.iloc[indexs]
+    df_filtered.reset_index(drop=True, inplace=True)
 
     # Select one random row:
     rowindex = random.choice(range(0,len(df_filtered)))
@@ -192,13 +215,18 @@ else:
     distance_party = getDistanceVenue(cleaned_party_list, df_filtered, rowindex)
     name_party = getNameVenue(cleaned_party_list, df_filtered, rowindex)
 
-    lat_long_airport = getLatLongVenue(cleaned_airport_list, df_filtered, rowindex)
-    distance_airport = getDistanceVenue(cleaned_airport_list, df_filtered, rowindex)
-    name_airport = getNameVenue(cleaned_airport_list, df_filtered, rowindex)
-
     lat_long_school = getLatLongVenue(cleaned_school_list, df_filtered, rowindex)
     distance_school = getDistanceVenue(cleaned_school_list, df_filtered, rowindex)
     name_school = getNameVenue(cleaned_school_list, df_filtered, rowindex)
+
+    name_dist_lat_long_airport = []
+    for i in range(len(office_airports)):
+        if str(office_airports[i][0]) == df_filtered.iloc[rowindex][0]:
+            for j in range(1, len(office_airports[i])):
+                name_dist_lat_long_airport.append(office_airports[i][j][0]) # name
+                name_dist_lat_long_airport.append(office_airports[i][j][1]) # dist           
+                name_dist_lat_long_airport.append(office_airports[i][j][2]) # lat
+                name_dist_lat_long_airport.append(office_airports[i][j][3]) # long  
 
     near_startups = []
     for i in range(len(startups_and_near_companies)):
@@ -209,7 +237,7 @@ else:
     # Output:
     printoutput(df_filtered.iloc[rowindex][10], df_filtered.iloc[rowindex][12], inputyears,
     inputmoney, distance_starbucks, name_vegan, distance_vegan, name_party, distance_party,
-    name_airport, distance_airport, name_school, distance_school)
+    name_dist_lat_long_airport[0], round(name_dist_lat_long_airport[1],2), name_school, distance_school)
 
     # Folium map:
     tooltip = 'Click me!'
@@ -225,8 +253,8 @@ else:
     folium.Marker(lat_long_party,radius=2,icon=folium.Icon(
         icon='glass',color='purple'),popup=f"<b>[Night club]</b> '{name_party}'",
         tooltip=tooltip).add_to(map_city)
-    folium.Marker(lat_long_airport,radius=2,icon=folium.Icon(
-        icon='plane', prefix='fa',color='blue'),popup=f"<b>[Airport]</b> '{name_airport}'",
+    folium.Marker([name_dist_lat_long_airport[2],name_dist_lat_long_airport[3]],radius=2,icon=folium.Icon(
+        icon='plane', prefix='fa',color='blue'),popup=f"<b>[Airport]</b> '{name_dist_lat_long_airport[0]}'",
         tooltip=tooltip).add_to(map_city)
     folium.Marker(lat_long_school,radius=2,icon=folium.Icon(
         icon='graduation-cap', prefix='fa',color='gray'),popup=f"<b>[School]</b> '{name_school}'",
