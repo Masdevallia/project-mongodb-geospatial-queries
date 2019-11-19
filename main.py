@@ -138,12 +138,14 @@ possible_offices_c1_c2_c3_c4_c5_coords = getOfficesCoords(possible_offices_c1_c2
 
 # Account managers need to travel a lot (Airport < 40 km)
 input_airport()
-airport_list = venuesListByCategory(possible_offices_c1_c2_c3_c4_c5_coords, possible_offices_c1_c2_c3_c4_c5,
- '4bf58dd8d48988d1eb931735', 40000)
-cleaned_airport_list = cleanVenueList(airport_list)
-possible_offices_c1_c2_c3_c4_c5_c6 = [e[0] for e in cleaned_airport_list]
-possible_offices_c1_c2_c3_c4_c5_c6_to_string = [str(e) for e in possible_offices_c1_c2_c3_c4_c5_c6]
-possible_offices_c1_c2_c3_c4_c5_c6_coords = getOfficesCoords(possible_offices_c1_c2_c3_c4_c5_c6, companies)
+df = pd.read_csv('./input/airports.csv')
+
+# airport_list = venuesListByCategory(possible_offices_c1_c2_c3_c4_c5_coords, possible_offices_c1_c2_c3_c4_c5,
+# '4bf58dd8d48988d1eb931735', 40000)
+# cleaned_airport_list = cleanVenueList(airport_list)
+# possible_offices_c1_c2_c3_c4_c5_c6 = [e[0] for e in cleaned_airport_list]
+# possible_offices_c1_c2_c3_c4_c5_c6_to_string = [str(e) for e in possible_offices_c1_c2_c3_c4_c5_c6]
+# possible_offices_c1_c2_c3_c4_c5_c6_coords = getOfficesCoords(possible_offices_c1_c2_c3_c4_c5_c6, companies)
 
 ########################################################################################################
 
