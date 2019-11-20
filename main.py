@@ -205,30 +205,65 @@ else:
     df_filtered = df.iloc[indexs]
     df_filtered.reset_index(drop=True, inplace=True)
 
-    # Select one random row:
-    rowindex = random.choice(range(0,len(df_filtered)))
-    e = [df_filtered.iloc[rowindex][8], df_filtered.iloc[rowindex][7]]
+    df_filtered = df_filtered[['_id', 'name', 'office_1_longitude', 'office_1_latitude', 'office_1_city','office_1_country_code']]
+    
+    df_filtered['starbucks_lat'] = getLatVenue(cleaned_starbucks_list, df_filtered)
+    df_filtered['starbucks_long'] = getLongVenue(cleaned_starbucks_list, df_filtered)
+    df_filtered['starbucks_dist'] = getDistanceVenue(cleaned_starbucks_list, df_filtered)
+    df_filtered['vegan_name'] = getNameVenue(cleaned_vegan_list, df_filtered)
+    df_filtered['vegan_lat'] = getLatVenue(cleaned_vegan_list, df_filtered)
+    df_filtered['vegan_long'] = getLongVenue(cleaned_vegan_list, df_filtered)
+    df_filtered['vegan_dist'] = getDistanceVenue(cleaned_vegan_list, df_filtered)
+    df_filtered['party_name'] = getNameVenue(cleaned_party_list, df_filtered)
+    df_filtered['party_lat'] = getLatVenue(cleaned_party_list, df_filtered)
+    df_filtered['party_long'] = getLongVenue(cleaned_party_list, df_filtered)
+    df_filtered['party_dist'] = getDistanceVenue(cleaned_party_list, df_filtered)
+    df_filtered['school_name'] = getNameVenue(cleaned_school_list, df_filtered)
+    df_filtered['school_lat'] = getLatVenue(cleaned_school_list, df_filtered)
+    df_filtered['school_long'] = getLongVenue(cleaned_school_list, df_filtered)
+    df_filtered['school_dist'] = getDistanceVenue(cleaned_school_list, df_filtered)
 
-    # Lat and long:
+    print('What do you want to have closer? A Starbucks (write 1), a Vegan Restaurant (2), a Place to Party (3) or a School (4)?')
+    while True:
+        order = input('Your priority = ')
+        try:
+            order = int(order)
+            if order > 0 and order < 5:
+                break
+            else:
+                print('Please enter a valid integer: 1 for Starbucks; 2 for Vegan Restaurant; 3 for Place to Party; 4 for School.') 
+        except ValueError:
+            print('Please enter a valid integer: 1 for Starbucks; 2 for Vegan Restaurant; 3 for Place to Party; 4 for School.')
+            continue
+     
+    if order == 1:
+        sortby = 'starbucks_dist'
+    elif order == 2:
+        sortby = 'vegan_dist'
+    elif order == 3:
+        sortby = 'party_dist'
+    elif order == 4:
+        sortby = 'school_dist'
 
-    lat_long_starbucks = getLatLongVenue(cleaned_starbucks_list, df_filtered, rowindex)
-    distance_starbucks = getDistanceVenue(cleaned_starbucks_list, df_filtered, rowindex)
+    df_filtered = df_filtered.sort_values([sortby], ascending=[True])
 
-    lat_long_vegan = getLatLongVenue(cleaned_vegan_list, df_filtered, rowindex)
-    distance_vegan = getDistanceVenue(cleaned_vegan_list, df_filtered, rowindex)
-    name_vegan = getNameVenue(cleaned_vegan_list, df_filtered, rowindex)
+    e = [df_filtered.iloc[0][3], df_filtered.iloc[0][2]]
 
-    lat_long_party = getLatLongVenue(cleaned_party_list, df_filtered, rowindex)
-    distance_party = getDistanceVenue(cleaned_party_list, df_filtered, rowindex)
-    name_party = getNameVenue(cleaned_party_list, df_filtered, rowindex)
-
-    lat_long_school = getLatLongVenue(cleaned_school_list, df_filtered, rowindex)
-    distance_school = getDistanceVenue(cleaned_school_list, df_filtered, rowindex)
-    name_school = getNameVenue(cleaned_school_list, df_filtered, rowindex)
+    lat_long_starbucks = [df_filtered.iloc[0][6], df_filtered.iloc[0][7]]
+    distance_starbucks = df_filtered.iloc[0][8]
+    lat_long_vegan = [df_filtered.iloc[0][10], df_filtered.iloc[0][11]]
+    distance_vegan = df_filtered.iloc[0][12]
+    name_vegan = df_filtered.iloc[0][9]
+    lat_long_party = [df_filtered.iloc[0][14], df_filtered.iloc[0][15]]
+    distance_party = df_filtered.iloc[0][16]
+    name_party = df_filtered.iloc[0][13]
+    lat_long_school = [df_filtered.iloc[0][18], df_filtered.iloc[0][19]]
+    distance_school = df_filtered.iloc[0][20]
+    name_school = df_filtered.iloc[0][17]
 
     name_dist_lat_long_airport = []
     for i in range(len(office_airports)):
-        if str(office_airports[i][0]) == df_filtered.iloc[rowindex][0]:
+        if str(office_airports[i][0]) == df_filtered.iloc[0][0]:
             for j in range(1, len(office_airports[i])):
                 name_dist_lat_long_airport.append(office_airports[i][j][0]) # name
                 name_dist_lat_long_airport.append(office_airports[i][j][1]) # dist           
@@ -238,11 +273,11 @@ else:
     near_startups = []
     for i in range(len(startups_and_near_companies)):
         for company in startups_and_near_companies[i][1]:
-            if company['name'] == df_filtered.iloc[rowindex][1]:
+            if company['name'] == df_filtered.iloc[0][1]:
                 near_startups.append(startups_and_near_companies[i][0])
 
     # Output:
-    printoutput(df_filtered.iloc[rowindex][10], df_filtered.iloc[rowindex][12], inputyears,
+    printoutput(df_filtered.iloc[0][4], df_filtered.iloc[0][5], inputyears,
     inputmoney, distance_starbucks, name_vegan, distance_vegan, name_party, distance_party,
     int(len(name_dist_lat_long_airport)/4), name_school, distance_school)
 

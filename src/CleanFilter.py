@@ -54,6 +54,43 @@ def cleanVenueList(venueList):
     return aux
 
 
+def getLatVenue(venueList, df):
+    latitude = []
+    for j in range(len(df)):
+        for i in range(len(venueList)):
+            if df.iloc[j][0] == str(venueList[i][0]):
+                latitude.append(venueList[i][1])
+    return latitude
+    
+
+def getLongVenue(venueList, df):
+    longitude = []
+    for j in range(len(df)):
+        for i in range(len(venueList)):
+            if df.iloc[j][0] == str(venueList[i][0]):
+                longitude.append(venueList[i][2])   
+    return longitude
+
+
+def getDistanceVenue(venueList, df):
+    distance = []
+    for j in range(len(df)):
+        for i in range(len(venueList)):
+            if df.iloc[j][0] == str(venueList[i][0]):
+                distance.append(venueList[i][3])     
+    return distance
+
+
+def getNameVenue(venueList, df):
+    name = []
+    for j in range(len(df)):
+        for i in range(len(venueList)):
+            if df.iloc[j][0] == str(venueList[i][0]):
+                name.append(venueList[i][5])    
+    return name
+
+
+'''
 def getLatLongVenue(venueList, df, rowindex):
     aux = []
     for i in range(len(venueList)):
@@ -77,5 +114,4 @@ def getNameVenue(venueList, df, rowindex):
         if str(venueList[i][0]) == df.iloc[rowindex][0]:
             aux += venueList[i][5]
     return aux
-
-
+'''
