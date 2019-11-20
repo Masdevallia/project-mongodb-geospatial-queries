@@ -11,7 +11,8 @@ from src.output import *
 title()
 
 # Importin data:
-df = pd.read_csv('./input/companies_df.csv', low_memory = False)
+# df = pd.read_csv('./input/companies_df.csv', low_memory = False)
+df = pd.read_json('./input/cleaned_companies.json')
 cols = ['_id', 'name', 'founded_year', 'category_code','deadpooled_year', 'total_money_raised_USD', 'num_offices',
  'office_1_longitude','office_1_latitude', 'office_1_location', 'office_1_city','office_1_state_code',
  'office_1_country_code']
