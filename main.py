@@ -201,7 +201,7 @@ else:
     df_filtered['school_dist'] = getDistanceVenue(cleaned_school_list, df_filtered)
 
     print('''
-        What do you want to have closer?
+        What do you prefer to have closer?
         A Starbucks (write 1), a Vegan Restaurant (2), a Place to Party (3) or a School (4)?''')
     
     order = getDelimitedIntegerInput()           
