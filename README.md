@@ -14,7 +14,7 @@ The goal of this project is to determine the perfect location for a company base
 * All people in the company have between 25 and 40 years, give them some place to go to party.
 * 30% of the company have at least 1 child.
 
-I started from a dataset from [Crunchbase](https://www.crunchbase.com/) which contains information on more than 18000 companies (e.g. name, address, coordinates, founded year or total money raised). I cleaned the dataset and enriched it by adding some relevant information extracted from APIs and another datasets. Finally, I filitered the data based on the arguments passed by the user and displayed the final selected location for the company along with all the relevant nearby venues (airports, Starbucks, schools, night clubs and vegan restaurants) in an HTML map using Folium.
+I started from a dataset from [Crunchbase](https://www.crunchbase.com/) which contains information on more than 18000 companies (e.g. name, address, coordinates, founded year or total money raised). I cleaned the dataset and enriched it by adding some relevant information extracted from APIs and another datasets. Finally, I filitered the data based on the arguments passed by the user and displayed the final selected location for the company along with all the relevant nearby venues (airports, Starbucks, schools, night clubs and vegan restaurants) in an HTML interactive map using Folium.
 
 ### Data cleaning (*cleaningprocess.py*):
 
@@ -34,7 +34,7 @@ I started from a dataset from [Crunchbase](https://www.crunchbase.com/) which co
 
 2. It uses [Foursquare API](https://api.foursquare.com) to supplement the data (requires authentication via token) and a dataset obtained from [Kaggle](https://www.kaggle.com/open-flights/airports-train-stations-and-ferry-terminals), which contains information about all airports in the world and that you can find in the *input* folder (*airports.csv*).
 
-3. Finally, the program calculates the best location for the company and displays it along with all the relevant nearby venues (airports, Starbucks, schools, night clubs and vegan restaurants) in an HTML interactive map using Folium (which opens in a new browser tab).
+3. Finally, the program calculates the best location for the company and displays it along with all the relevant nearby venues (airports, Starbucks, schools, night clubs and vegan restaurants) in a Folium HTML interactive map (which opens in a new browser tab).
 
 ### Example output:
 
@@ -46,8 +46,8 @@ I started from a dataset from [Crunchbase](https://www.crunchbase.com/) which co
  
 ### Deliverables:
 
-* *cleaningprocess.py*
-* *main.py*
+* *cleaningprocess.py*: Data cleaning.
+* *main.py*: Data filtering and map visualization.
 * *images* folder: Contains images desplayed in readme.md
 * *input* folder:
     * Initial datasets: *companies.json* and *airports.csv*.
