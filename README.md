@@ -13,6 +13,17 @@ The goal of this project is to determine the perfect location for a company base
 * 30% of the company have at least 1 child.
 * Designers like to go to design talks and share knowledge. There must be some nearby companies that also do design.
 
+### Data cleaning (*cleaningprocess.py*):
+
+1. I imported the data from the Crunchbase JSON file (*companies.json*) to MongoDB Compass.
+2. I acquired the data from MongoDB building *find* queries in Pymongo to perform a first filter on the raw data.
+3. I cleaned the dataset using Pandas.
+4. I created a GeoJSON Object.
+5. I Converted the total money raised by each company to US dollars through the [Exchangerate API](https://api.exchangerate-api.com/).
+6. I imported the cleaned data back to MongoDB Compass as a new collection.
+
+### Data filtering and map visualization (*main.py*):
+
 ## 
 
 <p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/output.png" width="700"></p>
@@ -25,16 +36,17 @@ The goal of this project is to determine the perfect location for a company base
 
 ### Deliverables:
 
-* *cleaningprocess.py*:
-* *main.py*:
-* *images* folder:
+* *cleaningprocess.py*
+* *main.py*
+* *images* folder: Contains images desplayed in readme.md
 * *input* folder:
     * Initial data sets: *companies.json* and *airports.csv*.
-    * Cleaned and enriched final data set: *cleaned_companies.json* and *companies_df.csv*.
+    * Cleaned and enriched final data set in two formats: *cleaned_companies.json* and *companies_df.csv*.
 * *output* folder:
+    * *map.html* (as an example output)
 * *src* folder: Contains functions I have imported and used in the project:
     * *apy.py*: functions related to APIs' usage.
     * *CleanFilter.py*: functions ralated to data cleaning, wrangling and filtering.
-    * *input.py*: functions related to...
-    * *mongodb.py*: functions related to...
-    * *output.py*: functions related to...
+    * *input.py*: functions related to displaying the inputs on screen.
+    * *mongodb.py*: functions related to establishing connection with MongoDB and executing queries.
+    * *output.py*: functions related to displaying the outputs (results) on screen.
