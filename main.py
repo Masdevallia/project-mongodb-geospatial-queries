@@ -86,26 +86,7 @@ def main():
     airports_df.reset_index(drop=True, inplace=True)
 
     distances = calculateDistance(possible_offices_c1_c2_coords, airports_df)
-    # distances = []
-    # for e in possible_offices_c1_c2_coords:
-        # coords_1 = (e['coordinates'][1], e['coordinates'][0])
-        # dist = []
-        # for i in range(len(airports_df)):
-            # coords_2 = (airports_df.at[i,'Lat'],airports_df.at[i,'Long'])
-            # dist.append(geopy.distance.geodesic(coords_1, coords_2).km)
-        # distances.append(dist)    
     office_airports = getCloserAirports(distances, possible_offices_c1_c2, airports_df)
-    # office_airports = []
-    # for i in range(len(distances)):
-        # aux = []
-        # aux.append(possible_offices_c1_c2[i])
-        # for j in range(len(distances[i])):
-            # if distances[i][j] <= 20:
-                # aux.append([airports_df.at[j,'FacilityName'],
-                            # distances[i][j],
-                            # airports_df.at[j,'Lat'],
-                            # airports_df.at[j,'Long']])
-        # office_airports.append(aux)
     possible_offices_c1_c2_c3 = []
     for e in office_airports:
         if len(e) >= 2:
