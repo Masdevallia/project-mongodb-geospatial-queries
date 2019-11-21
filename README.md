@@ -27,14 +27,14 @@ I started from a dataset from [Crunchbase](https://www.crunchbase.com/) which co
 
 ### Data filtering and map visualization (*main.py*):
 
-1. The program filters the data based on three the arguments passed by the user:
+1. The program filters the data based on three arguments passed by the user:
     * What amount of money should nearby successful tech startups have raised?
     * How old can nearby companies be, at most?
     * What do you prefer to have closer? A Starbucks, a vegan restaurant, a night club or a school?
 
 2. It uses [Foursquare API](https://api.foursquare.com) to supplement the data (requires authentication via token) and a dataset obtained from [Kaggle](https://www.kaggle.com/open-flights/airports-train-stations-and-ferry-terminals), which contains information about all airports in the world (*airports.csv*, which you can also find in the *input* folder).
 
-3. Then, the program ranks the possible locations upon its distance to the different venues (calculated using the python function *geopy.distance.geodesic*), and picks the one that better satisfies the user requeriments.
+3. Then, the program ranks the possible locations upon its distance to the different venues (obtained from Foursquare API or calculated using the python function *geopy.distance.geodesic*), and picks the one that better satisfies the user requeriments.
 
 4. Finally, it displays  the best location for the company along with all the relevant nearby venues (airports, Starbucks, schools, night clubs and vegan restaurants) in a Folium HTML interactive map (which opens in a new browser tab).
 
