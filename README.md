@@ -32,9 +32,11 @@ I started from a dataset from [Crunchbase](https://www.crunchbase.com/) which co
     * How old can nearby companies be, at most?
     * What do you prefer to have closer? A Starbucks, a vegan restaurant, a night club or a school?
 
-2. It uses [Foursquare API](https://api.foursquare.com) to supplement the data (requires authentication via token) and a dataset obtained from [Kaggle](https://www.kaggle.com/open-flights/airports-train-stations-and-ferry-terminals), which contains information about all airports in the world and that you can find in the *input* folder (*airports.csv*).
+2. It uses [Foursquare API](https://api.foursquare.com) to supplement the data (requires authentication via token) and a dataset obtained from [Kaggle](https://www.kaggle.com/open-flights/airports-train-stations-and-ferry-terminals), which contains information about all airports in the world (*airports.csv*, which you can also find in the *input* folder).
 
-3. Finally, the program calculates the best location for the company and displays it along with all the relevant nearby venues (airports, Starbucks, schools, night clubs and vegan restaurants) in a Folium HTML interactive map (which opens in a new browser tab).
+3. Then, the program ranks the possible locations upon its distance to the different venues (calculated using the python function *geopy.distance.geodesic*), and picks the one that better satisfies the user requeriments.
+
+4. Finally, it displays  the best location for the company along with all the relevant nearby venues (airports, Starbucks, schools, night clubs and vegan restaurants) in a Folium HTML interactive map (which opens in a new browser tab).
 
 ### Example output:
 
