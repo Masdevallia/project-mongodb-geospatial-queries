@@ -4,16 +4,15 @@
 
 ![Crunchbase](/images/readme.png)
 
-The goal of this project was to determine the perfect location for a company based on some given criteria (to choose at least 3 of the following):
+The goal of this project is to determine the perfect location for a company based on some given criteria:
 
-* Nobody in the company likes to have companies with more than 10 years in a radius of 2 km.
-* Developers like to be near successful tech startups that have raised at least 1 Million dollars.
+* Nobody in the company likes to have companies with more than (*10*) years in a radius of 2 km.
+* Developers like to be near successful tech startups that have raised at least (*1 Million*) dollars.
 * Account managers need to travel a lot.
 * Executives like Starbucks A LOT. Ensure there's a starbucks not to far.
 * The CEO is Vegan.
 * All people in the company have between 25 and 40 years, give them some place to go to party.
 * 30% of the company have at least 1 child.
-* Designers like to go to design talks and share knowledge. There must be some nearby companies that also do design.
 
 I started from a dataset from [Crunchbase](https://www.crunchbase.com/) which contains information on more than 18000 companies (e.g. name, address, coordinates, founded year or total money raised). I cleaned the dataset and enriched it by adding some relevant information extracted from APIs and another datasets. Finally, I filitered the data based on the arguments passed by the user and displayed the final selected location for the company along with all the relevant nearby venues (airports, Starbucks, schools, night clubs and vegan restaurants) in an HTML map using Folium.
 
