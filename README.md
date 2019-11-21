@@ -42,7 +42,7 @@ To do so, I started from a dataset from [Crunchbase](https://www.crunchbase.com/
 
 <p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/output_2.png" width="650"></p>
 
-<p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/map3.png" width="650"></p>
+<p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/map6.png" width="650"></p>
 
 <p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/map4.png" width="650"></p>
 
