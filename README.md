@@ -6,8 +6,8 @@
 
 The goal of this project is to determine the perfect location for a company based on some given criteria:
 
-* Nobody in the company likes to have companies with more than (*10*) years in a radius of 2 km.
-* Developers like to be near successful tech startups that have raised at least (*1 Million*) dollars.
+* Nobody in the company likes to have companies with more than *10* years in a radius of 2 km.
+* Developers like to be near successful tech startups that have raised at least *1 Million* dollars.
 * Account managers need to travel a lot.
 * Executives like Starbucks A LOT. Ensure there's a starbucks not to far.
 * The CEO is Vegan.
