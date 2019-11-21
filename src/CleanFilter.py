@@ -1,7 +1,6 @@
 
 import pandas as pd
 import numpy as np
-
 import folium
 import random
 import re
@@ -88,6 +87,35 @@ def getNameVenue(venueList, df):
             if df.iloc[j][0] == str(venueList[i][0]):
                 name.append(venueList[i][5])    
     return name
+
+
+def getIntegerInput():
+    while True:
+        getinput = input('n = ')
+        try:
+            getinput = int(getinput)
+            break
+        except ValueError:
+            print('Please enter a valid integer')
+            continue
+    return getinput
+
+
+def getDelimitedIntegerInput()
+    while True:
+        order = input('Your priority = ')
+        try:
+            order = int(order)
+            if order > 0 and order < 5:
+                break
+            else:
+                print('Please enter a valid integer: 1 for Starbucks; 2 for Vegan Restaurant; 3 for Place to Party; 4 for School.') 
+        except ValueError:
+            print('Please enter a valid integer: 1 for Starbucks; 2 for Vegan Restaurant; 3 for Place to Party; 4 for School.')
+            continue
+    return order
+
+
 
 
 '''

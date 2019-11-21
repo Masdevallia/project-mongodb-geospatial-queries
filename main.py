@@ -1,4 +1,3 @@
-
 print('\nPlease wait...')
 
 # Importing packages:
@@ -11,7 +10,6 @@ from src.output import *
 title()
 
 # Importin data:
-# df = pd.read_csv('./input/companies_df.csv', low_memory = False)
 df = pd.read_json('./input/cleaned_companies.json')
 cols = ['_id', 'name', 'founded_year', 'category_code','deadpooled_year', 'total_money_raised_USD', 'num_offices',
  'office_1_longitude','office_1_latitude', 'office_1_location', 'office_1_city','office_1_state_code',
@@ -28,14 +26,17 @@ companies = list(coll.find())
 # inputmoney = 1000000
 
 input_money()
-while True:
-    inputmoney = input('n = ')
-    try:
-        inputmoney = int(inputmoney)
-        break
-    except ValueError:
-        print('Please enter a valid integer')
-        continue
+inputmoney = getIntegerInput()
+
+# while True:
+    # inputmoney = input('n = ')
+    # try:
+        # inputmoney = int(inputmoney)
+        # break
+    # except ValueError:
+        # print('Please enter a valid integer')
+        # continue
+
 print('\nPlease wait...')
 
 successful_tech_startups = list(coll.find({'$and':[{'$or':[
@@ -67,15 +68,16 @@ possible_offices_c1 = list(set(possible_offices_criterion_1))
 # inputyears= 10
 
 input_year()
+inputyears = getIntegerInput()
 
-while True:
-    inputyears = input('n = ')
-    try:
-        inputyears = int(inputyears)
-        break
-    except ValueError:
-        print('Please enter a valid integer')
-        continue
+# while True:
+    # inputyears = input('n = ')
+    # try:
+        # inputyears = int(inputyears)
+        # break
+    # except ValueError:
+        # print('Please enter a valid integer')
+        # continue
 
 print('\nPlease wait...')
 
@@ -223,19 +225,24 @@ else:
     df_filtered['school_long'] = getLongVenue(cleaned_school_list, df_filtered)
     df_filtered['school_dist'] = getDistanceVenue(cleaned_school_list, df_filtered)
 
-    print('What do you want to have closer? A Starbucks (write 1), a Vegan Restaurant (2), a Place to Party (3) or a School (4)?')
-    while True:
-        order = input('Your priority = ')
-        try:
-            order = int(order)
-            if order > 0 and order < 5:
-                break
-            else:
-                print('Please enter a valid integer: 1 for Starbucks; 2 for Vegan Restaurant; 3 for Place to Party; 4 for School.') 
-        except ValueError:
-            print('Please enter a valid integer: 1 for Starbucks; 2 for Vegan Restaurant; 3 for Place to Party; 4 for School.')
-            continue
-     
+    print('''
+        What do you want to have closer?
+        A Starbucks (write 1), a Vegan Restaurant (2), a Place to Party (3) or a School (4)?''')
+    
+    order = getDelimitedIntegerInput()
+
+    # while True:
+        # order = input('Your priority = ')
+        # try:
+            # order = int(order)
+            # if order > 0 and order < 5:
+                # break
+            # else:
+                # print('Please enter a valid integer: 1 for Starbucks; 2 for Vegan Restaurant; 3 for Place to Party; 4 for School.') 
+        # except ValueError:
+            # print('Please enter a valid integer: 1 for Starbucks; 2 for Vegan Restaurant; 3 for Place to Party; 4 for School.')
+            # continue
+            
     if order == 1:
         sortby = 'starbucks_dist'
     elif order == 2:
