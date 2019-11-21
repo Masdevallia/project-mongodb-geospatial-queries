@@ -20,7 +20,7 @@ The goal of this project is to determine the perfect location for a company base
 3. I cleaned the dataset using Pandas.
 4. I created a GeoJSON Object.
 5. I Converted the total money raised by each company to US dollars through the [Exchangerate API](https://api.exchangerate-api.com/).
-6. I imported the cleaned data back to MongoDB Compass as a new collection.
+6. I imported the cleaned data (*cleaned_companies.json*) back to MongoDB Compass as a new collection.
 
 ### Data filtering and map visualization (*main.py*):
 
