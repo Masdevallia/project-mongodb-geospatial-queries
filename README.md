@@ -2,6 +2,8 @@
 
 ## <p align="center">Ironhack's Data Analytics Bootcamp Project III: MongoDB Geospatial Queries</p>
 
+![Crunchbase](/images/readme.png)
+
 The goal of this project was to determine the perfect location for a company based on some given criteria (to choose at least 3 of the following):
 
 * Nobody in the company likes to have companies with more than 10 years in a radius of 2 km.
