@@ -15,9 +15,13 @@ The goal of this project is to determine the perfect location for a company base
 
 ## 
 
-
 <p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/output.png" width="700"></p>
 
+<p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/map.png" width="700"></p>
+
+<p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/map2.png" width="700"></p>
+
+## 
 
 ### Deliverables:
 
