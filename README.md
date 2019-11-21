@@ -13,6 +13,9 @@ The goal of this project is to determine the perfect location for a company base
 * 30% of the company have at least 1 child.
 * Designers like to go to design talks and share knowledge. There must be some nearby companies that also do design.
 
+![Terminal](/images/output.png)
+![Map](/images/map.html)
+
 ### Deliverables:
 
 * *cleaningprocess.py*:
