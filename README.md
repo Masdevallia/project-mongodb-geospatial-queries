@@ -13,16 +13,20 @@ The goal of this project is to determine the perfect location for a company base
 * 30% of the company have at least 1 child.
 * Designers like to go to design talks and share knowledge. There must be some nearby companies that also do design.
 
+I started from a data set from [Crunchbase](https://www.crunchbase.com/) which contains data about more than 18K companies.
+
 ### Data cleaning (*cleaningprocess.py*):
 
 1. I imported the data from the Crunchbase JSON file (*companies.json*) to MongoDB Compass.
 2. I acquired the data from MongoDB building *find* queries in Pymongo to perform a first filter on the raw data.
 3. I cleaned the dataset using Pandas.
-4. I created a GeoJSON Object.
+4. I created a GeoJSON Object to be able to perform GeoJSON queries.
 5. I Converted the total money raised by each company to US dollars through the [Exchangerate API](https://api.exchangerate-api.com/).
 6. I imported the cleaned data (*cleaned_companies.json*) back to MongoDB Compass as a new collection.
 
 ### Data filtering and map visualization (*main.py*):
+I used [Foursquare API](https://api.foursquare.com) to supplement the data (requires authentication via token).
+I finally displayed the result selected location along with all the... in an HTML map using Folium.
 
 ## 
 
