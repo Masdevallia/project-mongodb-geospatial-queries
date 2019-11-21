@@ -1,12 +1,7 @@
 
 import pandas as pd
 import numpy as np
-import folium
 import random
-import re
-import fontawesome as fa
-from pathlib import Path
-import webbrowser
 import geopy.distance
 
 
@@ -116,30 +111,28 @@ def getDelimitedIntegerInput():
     return order
 
 
+def calculateDistance(fromThis, toThis):
+    distances = []
+    for e in fromThis:
+        coords_1 = (e['coordinates'][1], e['coordinates'][0])
+        dist = []
+        for i in range(len(toThis)):
+            coords_2 = (toThis.at[i,'Lat'],toThis.at[i,'Long'])
+            dist.append(geopy.distance.geodesic(coords_1, coords_2).km)
+        distances.append(dist)   
+    return distances 
 
 
-'''
-def getLatLongVenue(venueList, df, rowindex):
-    aux = []
-    for i in range(len(venueList)):
-        if str(venueList[i][0]) == df.iloc[rowindex][0]:
-            aux.append(venueList[i][1])
-            aux.append(venueList[i][2])
-    return aux
-
-
-def getDistanceVenue(venueList, df, rowindex):
-    aux = 0
-    for i in range(len(venueList)):
-        if str(venueList[i][0]) == df.iloc[rowindex][0]:
-            aux += venueList[i][3]
-    return aux
-
-
-def getNameVenue(venueList, df, rowindex):
-    aux = ''
-    for i in range(len(venueList)):
-        if str(venueList[i][0]) == df.iloc[rowindex][0]:
-            aux += venueList[i][5]
-    return aux
-'''
+def getCloserAirports(distances, offices, airports):
+    office_airports = []
+    for i in range(len(distances)):
+        aux = []
+        aux.append(offices[i])
+        for j in range(len(distances[i])):
+            if distances[i][j] <= 20:
+                aux.append([airports.at[j,'FacilityName'],
+                            distances[i][j],
+                            airports.at[j,'Lat'],
+                            airports.at[j,'Long']])
+        office_airports.append(aux)
+    return office_airports
