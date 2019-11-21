@@ -101,7 +101,7 @@ def getIntegerInput():
     return getinput
 
 
-def getDelimitedIntegerInput()
+def getDelimitedIntegerInput():
     while True:
         order = input('Your priority = ')
         try:

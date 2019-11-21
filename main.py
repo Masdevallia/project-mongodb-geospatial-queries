@@ -23,20 +23,8 @@ companies = list(coll.find())
 ########################################################################################################
 
 # Developers like to be near successful tech startups that have raised at least n (1 Million) dollars
-# inputmoney = 1000000
-
 input_money()
 inputmoney = getIntegerInput()
-
-# while True:
-    # inputmoney = input('n = ')
-    # try:
-        # inputmoney = int(inputmoney)
-        # break
-    # except ValueError:
-        # print('Please enter a valid integer')
-        # continue
-
 print('\nPlease wait...')
 
 successful_tech_startups = list(coll.find({'$and':[{'$or':[
@@ -65,20 +53,8 @@ possible_offices_c1 = list(set(possible_offices_criterion_1))
 ########################################################################################################
 
 # Nobody in the company likes to have companies with more than n (10) years in a radius of 2 KM
-# inputyears= 10
-
 input_year()
 inputyears = getIntegerInput()
-
-# while True:
-    # inputyears = input('n = ')
-    # try:
-        # inputyears = int(inputyears)
-        # break
-    # except ValueError:
-        # print('Please enter a valid integer')
-        # continue
-
 print('\nPlease wait...')
 
 old_companies = list(coll.find({'$and':[{'deadpooled_year': np.nan},{'founded_year':{'$lte':2019-inputyears}}]}))
@@ -153,7 +129,6 @@ possible_offices_c1_c2_c3_c4_coords = getOfficesCoords(possible_offices_c1_c2_c3
 
 # The CEO is Vegan
 input_vegan()
-# vegan_list = venuesListByQuery(possible_offices_c1_c2_c3_c4_coords, possible_offices_c1_c2_c3_c4, 'vegan', 1000)
 vegan_list = venuesListByCategory(possible_offices_c1_c2_c3_c4_coords, possible_offices_c1_c2_c3_c4,
              '4bf58dd8d48988d1d3941735', 1000)
 cleaned_vegan_list = cleanVenueList(vegan_list)
@@ -229,20 +204,7 @@ else:
         What do you want to have closer?
         A Starbucks (write 1), a Vegan Restaurant (2), a Place to Party (3) or a School (4)?''')
     
-    order = getDelimitedIntegerInput()
-
-    # while True:
-        # order = input('Your priority = ')
-        # try:
-            # order = int(order)
-            # if order > 0 and order < 5:
-                # break
-            # else:
-                # print('Please enter a valid integer: 1 for Starbucks; 2 for Vegan Restaurant; 3 for Place to Party; 4 for School.') 
-        # except ValueError:
-            # print('Please enter a valid integer: 1 for Starbucks; 2 for Vegan Restaurant; 3 for Place to Party; 4 for School.')
-            # continue
-            
+    order = getDelimitedIntegerInput()           
     if order == 1:
         sortby = 'starbucks_dist'
     elif order == 2:
@@ -253,20 +215,7 @@ else:
         sortby = 'school_dist'
 
     df_filtered = df_filtered.sort_values([sortby], ascending=[True])
-
     e = [df_filtered.iloc[0][3], df_filtered.iloc[0][2]]
-
-    lat_long_starbucks = [df_filtered.iloc[0][6], df_filtered.iloc[0][7]]
-    distance_starbucks = df_filtered.iloc[0][8]
-    lat_long_vegan = [df_filtered.iloc[0][10], df_filtered.iloc[0][11]]
-    distance_vegan = df_filtered.iloc[0][12]
-    name_vegan = df_filtered.iloc[0][9]
-    lat_long_party = [df_filtered.iloc[0][14], df_filtered.iloc[0][15]]
-    distance_party = df_filtered.iloc[0][16]
-    name_party = df_filtered.iloc[0][13]
-    lat_long_school = [df_filtered.iloc[0][18], df_filtered.iloc[0][19]]
-    distance_school = df_filtered.iloc[0][20]
-    name_school = df_filtered.iloc[0][17]
 
     name_dist_lat_long_airport = []
     for i in range(len(office_airports)):
@@ -285,30 +234,30 @@ else:
 
     # Output:
     printoutput(df_filtered.iloc[0][4], df_filtered.iloc[0][5], inputyears,
-    inputmoney, distance_starbucks, name_vegan, distance_vegan, name_party, distance_party,
-    int(len(name_dist_lat_long_airport)/4), name_school, distance_school)
+    inputmoney, df_filtered.iloc[0][8], df_filtered.iloc[0][9], df_filtered.iloc[0][12], df_filtered.iloc[0][13], df_filtered.iloc[0][16],
+    int(len(name_dist_lat_long_airport)/4), df_filtered.iloc[0][17], df_filtered.iloc[0][20])
 
     # Folium map:
     tooltip = 'Click me!'
     map_city = folium.Map(location = e, zoom_start=11)
     folium.Circle(radius=2000,location=e,popup='Old companies free zone',color='#3186cc',
         fill=True,fill_color='#3186cc').add_to(map_city)
-    folium.Marker(lat_long_starbucks,radius=2,icon=folium.Icon(
+    folium.Marker([df_filtered.iloc[0][6], df_filtered.iloc[0][7]],radius=2,icon=folium.Icon(
         icon='coffee', prefix='fa',color='orange'),popup='<b>[Starbucks]</b>',
         tooltip=tooltip).add_to(map_city)
-    folium.Marker(lat_long_vegan,radius=2,icon=folium.Icon(
-        icon='cutlery',color='green'),popup=f"<b>[Vegan restaurant]</b> '{name_vegan}'",
+    folium.Marker([df_filtered.iloc[0][10], df_filtered.iloc[0][11]],radius=2,icon=folium.Icon(
+        icon='cutlery',color='green'),popup=f"<b>[Vegan restaurant]</b> '{df_filtered.iloc[0][9]}'",
         tooltip=tooltip).add_to(map_city)
-    folium.Marker(lat_long_party,radius=2,icon=folium.Icon(
-        icon='glass',color='purple'),popup=f"<b>[Night club]</b> '{name_party}'",
+    folium.Marker([df_filtered.iloc[0][14], df_filtered.iloc[0][15]],radius=2,icon=folium.Icon(
+        icon='glass',color='purple'),popup=f"<b>[Night club]</b> '{df_filtered.iloc[0][13]}'",
         tooltip=tooltip).add_to(map_city)
     for i in range(0,len(name_dist_lat_long_airport),4):
         folium.Marker([name_dist_lat_long_airport[i+2],name_dist_lat_long_airport[i+3]],radius=2,icon=folium.Icon(
             icon='plane', prefix='fa',color='blue'),
             popup=f"<b>[Airport]</b> '{name_dist_lat_long_airport[i+0]}'. Distance from the office: {int(name_dist_lat_long_airport[i+1])} km",
             tooltip=tooltip).add_to(map_city)
-    folium.Marker(lat_long_school,radius=2,icon=folium.Icon(
-        icon='graduation-cap', prefix='fa',color='gray'),popup=f"<b>[School]</b> '{name_school}'",
+    folium.Marker([df_filtered.iloc[0][18], df_filtered.iloc[0][19]],radius=2,icon=folium.Icon(
+        icon='graduation-cap', prefix='fa',color='gray'),popup=f"<b>[School]</b> '{df_filtered.iloc[0][17]}'",
         tooltip=tooltip).add_to(map_city)
     folium.Marker(e,radius=2,icon=folium.Icon(
         icon='briefcase', color='red'),popup='<b>Perfect location for your business</b>',
