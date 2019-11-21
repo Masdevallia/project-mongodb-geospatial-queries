@@ -14,7 +14,7 @@ The goal of this project is to determine the perfect location for a company base
 * All people in the company have between 25 and 40 years, give them some place to go to party.
 * 30% of the company have at least 1 child.
 
-I started from a dataset from [Crunchbase](https://www.crunchbase.com/) which contains information on more than 18000 companies (e.g. name, address, coordinates, founded year or total money raised). I cleaned the dataset and enriched it by adding some relevant information extracted from APIs and another datasets. Finally, I filitered the data based on the arguments passed by the user and displayed the final selected location for the company along with all the relevant nearby venues (airports, Starbucks, schools, night clubs and vegan restaurants) in an HTML interactive map using Folium.
+To do so, I started from a dataset from [Crunchbase](https://www.crunchbase.com/) which contains information on more than 18000 companies (e.g. name, address, coordinates, founded year or total money raised). I cleaned the dataset and enriched it by adding some relevant information extracted from APIs and another datasets. Finally, I filitered the data based on the arguments passed by the user and displayed the final selected location for the company along with all the relevant nearby venues (airports, Starbucks, schools, night clubs and vegan restaurants) in an HTML interactive map using Folium.
 
 ### Data cleaning (*cleaningprocess.py*):
 
@@ -61,4 +61,4 @@ I started from a dataset from [Crunchbase](https://www.crunchbase.com/) which co
     * *CleanFilter.py*: functions ralated to data cleaning, wrangling and filtering.
     * *input.py*: functions related to displaying the inputs on screen.
     * *mongodb.py*: functions related to establishing connection with MongoDB and executing queries.
-    * *output.py*: functions related to displaying the outputs (results) on screen.
+    * *output.py*: functions related to creating the Folium map and to displaying the outputs (results) on screen.
