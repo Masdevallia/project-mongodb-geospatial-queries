@@ -39,8 +39,8 @@ To do so, I started from a dataset from [Crunchbase](https://www.crunchbase.com/
 4. Finally, it displays  the best location for the company along with all the relevant nearby venues (airports, Starbucks, schools, night clubs and vegan restaurants) in a Folium HTML interactive map (which opens in a new browser tab).
 
 ### Example output:
-
-
+\
+\
 <p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/output.gif" width="650"></p>
 
 <p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/mapgif.gif" width="650"></p>
