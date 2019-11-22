@@ -1,22 +1,18 @@
 
 # Importing packages:
-import pandas as pd
-import numpy as np
-from src.mongodb import *
 from src.CleanFilter import *
+from src.mongodb import *
 from src.api import exchangerate_api_request
 
 def main():
 
     # Importing db and col:
-
     db, coll = connectCollection('companies','companies')
     companies = list(coll.find({'$or':[{"offices.latitude":{'$ne':None}},{"offices.longitude":{'$ne':None}}]}))
 
     ########################################################################################################
 
     # Dict to DF:
-
     companies_dict = {}
     for i in range(len(companies)):
         set_key(companies_dict, '_id', companies[i]['_id'])
@@ -31,7 +27,6 @@ def main():
     ########################################################################################################
 
     # Offices:
-
     num_offices = []
     for i in range(len(companies)):
         num_offices.append(len(companies[i]['offices']))
@@ -70,7 +65,6 @@ def main():
     ########################################################################################################
 
     # GeoJSON Objects:
-
     for i in range(len(companies_data)):
         for j in range(len(companies_data[i])):
             if companies_data[i][j][0] != 0:
@@ -81,7 +75,6 @@ def main():
     ########################################################################################################
 
     # Money raised:
-
     companies_df.total_money_raised.replace('$0','0', inplace=True)
     companies_df['total_money_raised_currency'] = [None] * len(num_offices)
 
@@ -118,7 +111,6 @@ def main():
     ########################################################################################################
 
     # deadpooled_year:
-
     companies_df.deadpooled_year.replace(1.0,2006,inplace=True) # 2005 + 1
     companies_df.deadpooled_year.replace(2.0,1998,inplace=True) # 1996 + 2
     companies_df.deadpooled_year.replace(3.0,2008,inplace=True) # 2005 + 3
@@ -126,7 +118,6 @@ def main():
     ########################################################################################################
 
     # Currency exchange from an API:
-
     companies_df_final = companies_df[companies_df.num_offices>0]
 
     exchangerateGBP = exchangerate_api_request('GBP').json()
@@ -148,14 +139,12 @@ def main():
     ########################################################################################################
 
     # Exporting cleaned csv:
-
     companies_df_final.to_csv('./input/companies_df.csv', index=False)
     companies_df_final.to_json('./input/cleaned_companies.json', orient="records")
 
     ########################################################################################################
 
     # Importing cleaned data to MongoDB and creating 2dSphere index:
-
     coll2 = db['companies_cleaned']
     coll2.insert_many(companies_df_final.to_dict('records'))
 

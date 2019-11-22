@@ -1,0 +1,28 @@
+
+# Required packages:
+
+colorama==0.4.1
+folium==0.10.0
+fontawesome==5.10.1.post1
+geopy==1.20.0
+json5==0.8.4
+numpy==1.16.4
+pandas==0.24.2
+pathlib2==2.3.4
+pymongo==3.9.0
+requests==2.22.0
+
+
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: win-64
+# colorama=0.4.1=py37_0
+# folium=0.10.0=pypi_0
+# fontawesome=5.10.1.post1=pypi_0
+# geopy=1.20.0=pypi_0
+# json5=0.8.4=py_0
+# numpy=1.16.4=py37h19fb1c0_0
+# pandas=0.24.2=py37ha925a31_0
+# pathlib2=2.3.4=py37_0
+# pymongo=3.9.0=pypi_0
+# requests=2.22.0=py37_0

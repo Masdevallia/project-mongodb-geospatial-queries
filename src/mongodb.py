@@ -1,12 +1,13 @@
 
 from pymongo import MongoClient
 
+client = MongoClient() # Establishing the connection with MongoDB
+
 
 def connectCollection(database, collection):
     '''
-    Establishes the connection to a database and collection
+    Get one database and collection from MongoDB
     '''
-    client = MongoClient()
     db = client[database]
     coll = db[collection]
     return db, coll
