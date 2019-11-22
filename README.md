@@ -52,6 +52,7 @@ To do so, I started from a dataset from [Crunchbase](https://www.crunchbase.com/
 
 * *cleaningprocess.py*: Data cleaning.
 * *main.py*: Data filtering and map visualization.
+* *requirements.txt*: Required packages to be able to run the program.
 * *images* folder: Contains images desplayed in readme.md
 * *input* folder:
     * Initial datasets: *companies.json* and *airports.csv*.

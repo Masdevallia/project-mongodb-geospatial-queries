@@ -13,9 +13,11 @@ pymongo==3.9.0
 requests==2.22.0
 
 
+
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: win-64
+
 # colorama=0.4.1=py37_0
 # folium=0.10.0=pypi_0
 # fontawesome=5.10.1.post1=pypi_0
