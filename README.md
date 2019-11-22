@@ -40,6 +40,7 @@ To do so, I started from a dataset from [Crunchbase](https://www.crunchbase.com/
 
 ### Example output:
 
+
 <p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/output.gif" width="650"></p>
 
 <p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/mapgif.gif" width="650"></p>
