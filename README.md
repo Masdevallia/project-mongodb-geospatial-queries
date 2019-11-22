@@ -40,13 +40,9 @@ To do so, I started from a dataset from [Crunchbase](https://www.crunchbase.com/
 
 ### Example output:
 
-<p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/output_2.png" width="650"></p>
+<p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/output.png" width="650"></p>
 
-<p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/map6.png" width="650"></p>
-
-<p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/map4.png" width="650"></p>
-
-<p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/map5.png" width="650"></p>
+<p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/mapgif.gif" width="650"></p>
  
 ### Deliverables:
 
