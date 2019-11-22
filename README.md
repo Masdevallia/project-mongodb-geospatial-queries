@@ -16,7 +16,11 @@ The goal of this project is to determine the perfect location for a company base
 
 To do so, I started from a dataset from [Crunchbase](https://www.crunchbase.com/) which contains information on more than 18000 companies (e.g. name, address, coordinates, founded year or total money raised). I cleaned the dataset and enriched it by adding some relevant information extracted from APIs and another datasets. Finally, I filitered the data based on the arguments passed by the user and displayed the final selected location for the company along with all the relevant nearby venues (airports, Starbucks, schools, night clubs and vegan restaurants) in an HTML interactive map using Folium.
 
+--- 
+
 ### Data cleaning (*cleaningprocess.py*):
+
+--- 
 
 1. I imported the data from the Crunchbase JSON file (*companies.json*) to MongoDB Compass.
 2. I acquired the data from MongoDB building *find* queries in Pymongo to perform a first filter on the raw data.
@@ -25,7 +29,11 @@ To do so, I started from a dataset from [Crunchbase](https://www.crunchbase.com/
 5. I Converted the total money raised by each company to US dollars through the [Exchangerate API](https://api.exchangerate-api.com/).
 6. I imported the cleaned data (*cleaned_companies.json*) back to MongoDB Compass as a new collection.
 
+--- 
+
 ### Data filtering and map visualization (*main.py*):
+
+--- 
 
 1. The program filters the data based on three arguments passed by the user:
     * What amount of money should nearby successful tech startups have raised?
@@ -38,14 +46,21 @@ To do so, I started from a dataset from [Crunchbase](https://www.crunchbase.com/
 
 4. Finally, it displays  the best location for the company along with all the relevant nearby venues (airports, Starbucks, schools, night clubs and vegan restaurants) in a Folium HTML interactive map (which opens in a new browser tab).
 
+--- 
+
 ### Example output:
 
+--- 
 
 <p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/output.gif" width="650"></p>
 
 <p align="center"><img  src="https://github.com/Masdevallia/project-mongodb-geospatial-queries/blob/master/images/mapgif.gif" width="650"></p>
- 
+
+--- 
+
 ### Deliverables:
+
+--- 
 
 * *cleaningprocess.py*: Data cleaning.
 * *main.py*: Data filtering and map visualization.
@@ -62,3 +77,5 @@ To do so, I started from a dataset from [Crunchbase](https://www.crunchbase.com/
     * *input.py*: functions related to displaying the inputs on screen.
     * *mongodb.py*: functions related to establishing connection with MongoDB and executing queries.
     * *output.py*: functions related to creating the Folium map and to displaying the outputs (results) on screen.
+
+--- 
