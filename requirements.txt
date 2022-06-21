@@ -6,7 +6,7 @@ folium==0.10.0
 fontawesome==5.10.1.post1
 geopy==1.20.0
 json5==0.8.4
-numpy==1.16.4
+numpy==1.22.0
 pandas==0.24.2
 pathlib2==2.3.4
 pymongo==3.9.0
